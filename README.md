@@ -10,7 +10,7 @@ The repo includes `.github/workflows/deploy.yml`, which builds the site and depl
 
 ### One-time setup
 
-1. **Push this repo to GitHub** (on the `main` branch, including the `.github/` folder)..
+1. **Push this repo to GitHub** (on the `main` branch, including the `.github/` folder).
 2. Go to your repo → **Settings** → **Pages**.
 3. Under **Source**, select **GitHub Actions** (not "Deploy from a branch").
 4. Push any commit, or trigger the workflow manually under **Actions** → **Deploy MkDocs site** → **Run workflow**.
@@ -21,7 +21,7 @@ That's it. After the workflow completes (~1–2 min), the site is live at `https
 
 If you set Pages to **"Deploy from a branch"** with the source as `main` / root, GitHub Pages will just render the README.md of the repo root — which is what you're probably seeing right now. We need Pages to serve the **built** site (the `site/` folder MkDocs produces), not the source markdown.
 
-The Actions workflow handles this: it runs `mkdocs build`, uploads the result as a Pages artifact, and deploys it. No `gh-pages` branch, no force pushes, no manual steps after setup..
+The Actions workflow handles this: it runs `mkdocs build`, uploads the result as a Pages artifact, and deploys it. No `gh-pages` branch, no force pushes, no manual steps after setup.
 
 ### Updating site_url
 
