@@ -10,7 +10,7 @@ The repo includes `.github/workflows/deploy.yml`, which builds the site and depl
 
 ### One-time setup
 
-1. **Push this repo to GitHub** (on the `main` branch, including the `.github/` folder).
+1. **Push this repo to GitHub** (on the `main` branch, including the `.github/` folder)..
 2. Go to your repo → **Settings** → **Pages**.
 3. Under **Source**, select **GitHub Actions** (not "Deploy from a branch").
 4. Push any commit, or trigger the workflow manually under **Actions** → **Deploy MkDocs site** → **Run workflow**.
