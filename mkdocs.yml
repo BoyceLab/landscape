@@ -2,8 +2,7 @@ site_name: Boyce Lab Genetic Epilepsy Landscape
 site_description: A community-facing landscape of monogenic epilepsy genes — patient communities, registries, research efforts, and therapeutic programs.
 site_author: Boyce Lab
 
-# Update site_url before deploying to your domain
-site_url: https://boycedatascience.com/landscape/
+site_url: https://boycelab.github.io/landscape/
 
 theme:
   name: material
