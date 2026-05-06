@@ -2,7 +2,7 @@
 
 This is the [MkDocs](https://www.mkdocs.org/) source for the Boyce Lab Genetic Epilepsy Landscape site, using the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme.
 
-## What's here
+## Contents
 
 ```
 .
