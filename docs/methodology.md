@@ -36,15 +36,17 @@ The dashboard surfaces these fields per gene:
 
 `Patient foundation` — Primary patient-led organization, with URL where available. Some foundations are 501(c)(3); some are international networks; some are family-led without formal incorporation
 
-`Registry platform(s)` — Underlying technology or host of each registry/NH study, with multiple platforms allowed per gene. See the [Glossary](glossary.md) for canonical platform names
-
-`Simons Searchlight` — Whether the gene is on the Simons Searchlight (SFARI Base) enrolled gene list
-
-`CoRDS` — Whether Sanford CoRDS lists the gene's typical disorder. "Implicit" indicates the gene's syndromes fall within CoRDS's umbrella but no dedicated partner-org listing exists
+`Registry platform(s)` — Underlying technology or host of each registry/NH study, with multiple platforms allowed per gene. Foundation-hosted and Academic/REDCap pills link to the gene's actual registry URL (not a generic platform homepage). Simons Searchlight and Sanford CoRDS coverage is shown as pills in this column rather than as separate columns. See the [Glossary](glossary.md) for canonical platform names
 
 `Therapeutic programs` — Industry programs disclosed publicly + active academic translational programs. Excludes preclinical-only academic work unless program-level
 
+`FDA Patient Experience` — Whether the gene's primary disorder has a Patient-Focused Drug Development meeting report on file with the FDA, with meeting type (EL-PFDD, FDA-led PFDD, or Patient Listening Session) and year. Links to the meeting summary or the FDA's PFDD landing page where the disease-specific report can be found
+
 `Resources` — Deterministic links to PubMed (gene + epilepsy search), HGNC, NCBI Gene, ClinVar, gnomAD, GeneReviews search, and Orphanet gene record. These are generated for every gene whether or not the target page exists at the destination
+
+## Data sources for foundation and registry data
+
+Foundation websites, registry deep links, and social media handles for the deep-dived genes draw on the Rare Epilepsy Network / Chan Zuckerberg Initiative database (REN_CZI_DB), an external curation that verifies foundation URLs, registry endpoints, LinkedIn, Facebook, Instagram, and YouTube presences. FDA Patient-Focused Drug Development data comes from the FDA's published Condition-Specific Patient Experience Meeting Reports list. These external sources are merged into the deep-dive entries during the build.
 
 ## Verification dates
 
