@@ -1,71 +1,83 @@
-# Boyce Lab Genetic Epilepsy Landscape
+# Feedback form
 
-A reference resource for the rare epilepsy community covering patient organizations, registries, research efforts, and therapeutic programs across monogenic epilepsy genes.
+Testers complete this within 24 hours of their session, while impressions are fresh. About 10 minutes.
 
-## What this is
+You can reproduce this form in a survey tool (Google Forms, Tally, Typeform), in an email, or as a Word document. The fields below are the canonical version; copy what you need.
 
-Drawing on the [Genes4Epilepsy curated gene list](https://bahlolab.github.io/Genes4Epilepsy/) (Bahlo Lab, v2026-03), this resource maps the patient infrastructure, research ecosystem, and therapeutic development pipeline for **1,078 genes** implicated in epilepsy — from genes with mature international foundations to those just being discovered.
+## About you
 
-## What you'll find
+- Name (optional)
+- Date of your session
+- Audience you most identify with: clinician / foundation staff / patient or family member / researcher / other
+- Device used during the session
 
-For every gene on the list:
+## Part A — Ratings
 
-- Reference links to PubMed, OMIM, GeneReviews, ClinVar, gnomAD, Orphanet, HGNC, NCBI Gene
-- Inheritance pattern and phenotype group
+Rate each statement on a scale of 1 to 5:
 
-For the **128 genes with established or emerging patient communities**:
+**1** = Strongly Disagree  ·  **2** = Disagree  ·  **3** = Neutral  ·  **4** = Agree  ·  **5** = Strongly Agree
 
-- Patient organizations and family networks (US and international)
-- Registries and natural history studies, including the platforms behind them
-- US and international research centers and consortia
-- Active therapeutic programs — from preclinical to FDA-approved
-- Philanthropic funders and federal funding context
-- Foundation social media presence
+| Statement | Rating |
+|-----------|--------|
+| Within 30 seconds I understood what this site is and who it is for. | ☐ |
+| The purpose, scope, and audience are clearly communicated. | ☐ |
+| The status categories are clearly defined and easy to interpret. | ☐ |
+| Filters and sorts behaved the way I expected. | ☐ |
+| I could find what I came for without needing to ask anyone. | ☐ |
+| The terminology used throughout the site matched my own (or was clearly defined where it did not). | ☐ |
+| The data sources and update date were clearly visible and gave me confidence in the information. | ☐ |
+| External links worked and led where I expected. | ☐ |
+| The site worked well on the device I used. | ☐ |
+| The "Suggest a correction" workflow was easy to find and use. | ☐ |
+| I would recommend this resource to a colleague or community member. | ☐ |
 
-<div class="quick-links">
+## Part B — Open response
 
-<a href="dashboard/" class="quick-link-card">
-  <div class="ql-title">Open the dashboard</div>
-  <div class="ql-desc">Searchable, sortable view of all 1,078 genes with filters</div>
-</a>
+Take as much or as little space as you need. **Critical feedback is more useful to us than polite feedback — please be honest.**
 
-<a href="methodology/" class="quick-link-card">
-  <div class="ql-title">Methodology</div>
-  <div class="ql-desc">How the landscape was built and how to read it</div>
-</a>
+### First impression
 
-<a href="data/" class="quick-link-card">
-  <div class="ql-title">Download the data</div>
-  <div class="ql-desc">Spreadsheet for offline use and re-analysis</div>
-</a>
+- In one sentence, what does this site do and who is it for?
+- What did you notice first? What confused you first?
 
-<a href="about/" class="quick-link-card">
-  <div class="ql-title">About + contact</div>
-  <div class="ql-desc">Submit corrections, additions, or questions</div>
-</a>
+### Findability
 
-</div>
+- Were there things you expected to find but couldn't?
+- Were there controls or features you didn't notice until later?
 
-## How to read it
+### Comprehension
 
-Genes are grouped into three status tiers based on the depth of organized community infrastructure — not on disease severity, gene importance, or research interest.
+- Which terms, categories, or labels were unclear?
+- Which ones did you initially misread, even if you later figured them out?
 
-<span class="status-badge status-established">●●● Established</span> Active patient foundation paired with research infrastructure (registry, natural history study, multi-stakeholder coordination). 61 genes.
+### Trust and credibility
 
-<span class="status-badge status-emerging">●●○ Emerging</span> Partial or growing infrastructure — a research consortium without a foundation, or a small foundation without an academic NH study. 62 genes.
+- What made you trust (or doubt) the information here?
+- What additional context would have helped?
 
-<span class="status-badge status-background">●○○ Background</span> The gene is confirmed in epilepsy but no organized patient community has been identified yet. Reference links are still provided. 955 genes.
+### Accuracy
 
-The status itself is the most useful signal: **the gap between "high research activity" and "organized community" is where the landscape is most informative**.
+*If you have subject-matter knowledge:*
 
-## What this is not
+- Was anything you saw factually wrong or out of date?
+- Was anything important missing from the rows you looked at most closely?
 
-This is a snapshot, not a clinical guideline. URLs and program details change rapidly in rare disease — verify specifics before citing or making decisions. Therapeutic programs, especially clinical trials, change month to month.
+### Device and accessibility
 
-This is not exhaustive. Some communities are intentionally low-profile, some foundations operate without a public web presence, and the curation lens is biased toward English-language sources. Help us improve it.
+- Did anything not work, or work poorly, on your device?
+- If you use assistive technology: did anything block or slow you down?
 
-## Help us make it better
+### Improvements
 
-Spot something out of date, missing, or wrong? Use the **Suggest a correction** button on the [dashboard](dashboard.md), or email Danielle directly at [danielle@boycedatascience.com](mailto:danielle@boycedatascience.com).
+- What is the single most valuable change that would improve this site?
+- What other changes would meaningfully help your audience?
 
-We update this resource based on community input and the twice-yearly Genes4Epilepsy releases.
+### Overall
+
+- Would you recommend releasing this site as-is, with minor revisions, or with substantial revisions? Why?
+
+---
+
+## Thank you
+
+Your feedback directly shapes what we change before release. We'll send you a short note when revisions are complete, so you can see what your session influenced.
