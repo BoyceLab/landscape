@@ -2,9 +2,7 @@
 
 ## About this resource
 
-The Boyce Lab Genetic Epilepsy Landscape is a community-facing reference resource compiled and maintained by the Boyce Lab. It started as background research for a talk to the KCNT1 epilepsy patient community and grew into a broader effort to map the patient infrastructure, research ecosystem, and therapeutic development pipeline across all monogenic epilepsy genes.
-
-The work is intentionally framed as **co-production** — built from the outset with the rare epilepsy community in mind, designed to be improved by community input, and shared so anyone can reuse it.
+The Boyce Lab Genetic Epilepsy Landscape is a community-facing reference resource compiled and maintained by the Boyce Lab. The work is intentionally framed as **co-production** — built from the outset with the rare epilepsy community in mind, designed to be improved by community input, and shared so anyone can reuse it.
 
 ## About the Boyce Lab
 
