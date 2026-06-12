@@ -41,12 +41,18 @@ extra_css:
 
 nav:
   - Home: index.md
+  - Atlas: atlas.md
+  - Maturity model: maturity-model.md
+  - Self-assessment: self-assessment.md
+  - Resources: resources.md
+  - Submit an update: submit.md
   - Dashboard: dashboard.md
   - Methodology: methodology.md
   - Glossary: glossary.md
   - Data: data.md
   - Testing:
       - Overview: testing/index.md
+      - Async testing: testing/async-testing.md
       - Approach and rubric: testing/approach.md
       - Running a session: testing/facilitator-guide.md
       - For testers: testing/welcome-packet.md
