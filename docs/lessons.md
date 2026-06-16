@@ -8,7 +8,7 @@ It is built around one principle: **fit, not fault.** Most lessons are a mismatc
     Nothing publishes automatically. A reviewer removes names, personal health information, and any phrasing that reads as a factual charge against a third party, then publishes the lesson as your account. Organizations stay anonymous unless they choose to be named.
 
 !!! warning "What this is, and is not"
-    Published lessons are individual organizations' experiences and opinions. They are not verified statements of fact about any product, organization, or person, and they are not endorsements. Describe approaches and partners by category rather than name. If a specific entity is named, it must be plain verifiable fact, it receives stricter review, and the named party has a right of reply and correction. To raise a concern about a published lesson, write to [danielle@boycedatascience.com](mailto:danielle@boycedatascience.com?subject=Lessons%20learned%20concern).
+    Published lessons are individual organizations' experiences and opinions. They are not verified statements of fact about any product, organization, or person, and they are not endorsements. Describe approaches and partners by category. Naming a specific vendor, product, or person is not part of this form, and any names are removed in review. If you choose, you can let interested readers reach out to you, and your contact appears only when you opt in. To raise a concern about a published lesson, write to [danielle@boycedatascience.com](mailto:danielle@boycedatascience.com?subject=Lessons%20learned%20concern).
 
 <a href="../assets/lessons.html" target="_blank" rel="noopener" class="md-button md-button--primary dashboard-popout">
   ↗ Open in a new tab (recommended)

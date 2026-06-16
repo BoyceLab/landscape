@@ -82,7 +82,7 @@ textarea{min-height:64px;resize:vertical}
 
   <!-- SHARE -->
   <div id="share">
-    <div class="callout">Nothing publishes automatically. A reviewer removes names, personal health information, and any phrasing that reads as a factual charge against a third party, then publishes it as your account. You stay anonymous unless you choose otherwise.</div>
+    <div class="callout">Nothing publishes automatically. Naming a vendor, product, or other organization is not part of this form. A reviewer removes any names or personal health information that slip in, then publishes the lesson as your account. You stay anonymous unless you choose otherwise.</div>
     <div class="card">
       <div class="row2">
         <div><label class="flabel">Where in the maturity model <span class="fhint">which track</span></label>
@@ -100,26 +100,20 @@ textarea{min-height:64px;resize:vertical}
         <div class="chips" id="costs"></div></div>
       <div style="margin-top:14px"><label class="flabel">What you would tell a peer at the same stage <span class="fhint">the part others will read first</span></label>
         <textarea id="advice" placeholder="e.g. Pin down your core data elements and test the survey with five families before you sign anything. Ask every platform how export and data ownership work on day one."></textarea></div>
-
-      <div style="margin-top:14px">
-        <label class="attest"><input type="checkbox" id="namechk" onchange="document.getElementById('namebox').classList.toggle('hidden',!this.checked)">
-          <span>I need to name a specific organization, product, or person.</span></label>
-        <div id="namebox" class="namebox hidden">
-          <div class="warn">Name only if you can state plain, verifiable fact (for example, a contract term or a documented outage), not a characterization. Naming triggers stricter review and a right of reply for the named party. When in doubt, leave it as a category above.</div>
-          <input id="named" placeholder="The entity, and the factual statement only">
-        </div>
-      </div>
+      <div class="warn" style="margin-top:14px">Describe vendors, products, and partners by category, not by name. This form does not collect the name of any other organization or person, and a reviewer removes any that slip in. The lesson is about your own decision and what you would do differently.</div>
     </div>
 
     <div class="card">
-      <div class="callout" style="margin-top:0">This lesson is published <b>anonymously</b> by default. Most lessons are more useful, and safer to share, without a name attached. You can choose to attribute it.</div>
+      <div class="callout" style="margin-top:0">This lesson is published <b>anonymously</b> by default. You can choose to attribute it to your organization, to let interested readers reach out to you, or both. Each is a separate choice.</div>
       <label class="attest"><input type="checkbox" id="attribchk" onchange="document.getElementById('attribbox').classList.toggle('hidden',!this.checked)">
         <span>Attribute this lesson to our organization</span></label>
       <div id="attribbox" class="namebox hidden">
-        <div class="row2">
-          <div><label class="flabel">Organization name</label><input id="org" placeholder="Your organization"></div>
-          <div><label class="flabel">Contact for peers <span class="fhint">optional</span></label><input id="contact" placeholder="email or URL, if peers may reach you"></div>
-        </div>
+        <label class="flabel">Organization name</label><input id="org" placeholder="Your organization">
+      </div>
+      <label class="attest" style="margin-top:12px"><input type="checkbox" id="reachchk" onchange="document.getElementById('reachbox').classList.toggle('hidden',!this.checked)">
+        <span>Let interested readers reach out to us about this lesson</span></label>
+      <div id="reachbox" class="namebox hidden">
+        <label class="flabel">Contact for readers <span class="fhint">email or link; you choose what to share, and you can be reachable while staying anonymous</span></label><input id="contact" placeholder="email or link">
       </div>
       <label class="attest" style="margin-top:14px"><input type="checkbox" id="attest">
         <span>This is our organization's own experience, accurate to our knowledge. I understand it will be published as our account after review, and that it is shared as experience and opinion, not a statement of fact about others.</span></label>
@@ -146,6 +140,7 @@ const CATEGORIES=["Commercial registry platform","Academic or self-hosted REDCap
 const COSTS=["Time","Money","Enrollment","Data quality","Trust with families","Staff burnout","Vendor lock in","Rework","Little or none"];
 const SC={1:'var(--s1)',2:'var(--s2)',3:'var(--s3)',4:'var(--s4)',5:'var(--s5)'};
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function contactHref(c){c=String(c).trim();return (c.includes('@')&&!c.includes('://'))?('mailto:'+encodeURIComponent(c).replace(/%40/,'@')):esc(c);}
 const sel={costs:new Set()};
 
 function show(v){
@@ -177,12 +172,12 @@ function gather(){
     decision:document.getElementById('decision').value,category:catSel.value,
     gap:document.getElementById('gap').value,costs:[...sel.costs],
     advice:document.getElementById('advice').value,
-    named:document.getElementById('namechk').checked?document.getElementById('named').value:'',
     org:(document.getElementById('attribchk').checked && document.getElementById('org').value)?document.getElementById('org').value:'Anonymous',
-    contact:document.getElementById('attribchk').checked?document.getElementById('contact').value:''};
+    contact:(document.getElementById('reachchk').checked && document.getElementById('contact').value)?document.getElementById('contact').value:'',
+    reachable:document.getElementById('reachchk').checked};
 }
 function lessonText(L){
-  return `Lessons learned submission\n\nTrack: ${L.track}\nStage: ${L.stage}\nApproach type: ${L.category}\n\nDecision: ${L.decision}\n\nExpected vs happened: ${L.gap}\n\nCost: ${L.costs.join(', ')||'-'}\n\nAdvice to a peer at this stage: ${L.advice}\n\nNamed entity (review carefully): ${L.named||'none'}\n\nOrganization: ${L.org}\nContact: ${L.contact||'-'}\n\n[Submitter attested this is their own experience. Maintainer: review, de-identify, then add to lessons.json.]`;
+  return `Lessons learned submission\n\nTrack: ${L.track}\nStage: ${L.stage}\nApproach type: ${L.category}\n\nDecision: ${L.decision}\n\nExpected vs happened: ${L.gap}\n\nCost: ${L.costs.join(', ')||'-'}\n\nAdvice to a peer at this stage: ${L.advice}\n\nOrganization: ${L.org}\nReachable by readers: ${L.reachable?'yes':'no'}\nContact: ${L.contact||'-'}\n\n[Submitter attested this is their own experience. No third party is named. Maintainer: review, remove any names that slipped in, then add to lessons.json.]`;
 }
 function submitGH(){
   const L=gather();if(!L.advice.trim()){alert('Add the advice for a peer before submitting.');return;}
@@ -214,7 +209,7 @@ function render(L){
       <span class="pill cat">${esc(x.category||'')}</span>${(x.costs||[]).map(c=>`<span class="pill">${esc(c)}</span>`).join('')}</div>
     <div class="advice">${esc(x.advice||'')}</div>
     ${x.gap?`<div class="det"><b>What happened:</b> ${esc(x.gap)}</div>`:''}
-    ${x.org&&x.org!=='Anonymous'?`<div class="det">— ${esc(x.org)}${x.contact?` · <a href="${esc(x.contact)}">contact</a>`:''}</div>`:'<div class="det">— Anonymous organization</div>'}
+    <div class="det">— ${x.org&&x.org!=='Anonymous'?esc(x.org):'Anonymous organization'}${x.contact?` · <a href="${contactHref(x.contact)}">reach out to the reporter</a>`:''}</div>
   </div>`).join('');
 }
 </script></body></html>
