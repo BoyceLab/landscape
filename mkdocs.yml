@@ -41,7 +41,9 @@ extra_css:
 
 nav:
   - Home: index.md
+  - Start here: start-here.md
   - Atlas: atlas.md
+  - Reports and lists: reports.md
   - Maturity model: maturity-model.md
   - Self-assessment: self-assessment.md
   - Resources: resources.md

@@ -22,6 +22,13 @@ hide:
 @media(max-width:720px){.toolsrow{grid-template-columns:repeat(2,1fr)}}
 .tool{border:1px solid #e4dff0;border-radius:11px;padding:13px 15px;background:#f3eaff;text-align:center;font-weight:600;font-size:14px;color:#5b21b6}
 .tool:hover{text-decoration:none;border-color:#8b5cf6}
+.starthere{display:flex;align-items:center;gap:18px;border:1px solid #e4dff0;border-left:5px solid #6d28d9;border-radius:14px;padding:18px 22px;background:linear-gradient(90deg,#f3eaff,#fffdf8);margin:22px 0 6px;transition:transform .15s,border-color .15s}
+.starthere:hover{transform:translateY(-2px);border-color:#8b5cf6;text-decoration:none}
+.starthere .sh-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6d28d9;font-weight:700;margin:0}
+.starthere .sh-title{font-family:Fraunces,Georgia,serif;font-size:20px;font-weight:600;color:#0e1a2b;margin:4px 0 4px}
+.starthere .sh-sub{color:#6b7280;font-size:14px;margin:0;max-width:70ch}
+.starthere .sh-arrow{margin-left:auto;font-size:26px;color:#6d28d9;flex:none}
+@media(max-width:560px){.starthere .sh-arrow{display:none}}
 .rk{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6b7280;font-weight:700;margin:24px 0 0}
 </style>
 
@@ -35,6 +42,15 @@ hide:
 <p>A living map of rare epilepsy genes, the conditions they cause, the organizations supporting families, and how research-ready those communities are. Pick the door that fits you. You can always move between views once you are inside.</p>
 </div>
 
+<a class="starthere" href="start-here/" markdown>
+<div markdown>
+<p class="sh-eyebrow">New here</p>
+<p class="sh-title">Living with epilepsy, or caring for a child with epilepsy, and the cause is still unknown?</p>
+<p class="sh-sub">Start here. A plain language orientation to finding a cause, connecting with others, and using this site, whether or not you have a diagnosis yet.</p>
+</div>
+<span class="sh-arrow">&rarr;</span>
+</a>
+
 <div class="doors" markdown>
 
 <a class="door" href="atlas/" markdown>
@@ -44,8 +60,8 @@ hide:
 </a>
 
 <a class="door" href="atlas/" markdown>
-<p class="dn">I am a patient or family member</p>
-<p class="dd">See whether a foundation, registry, or research effort exists for your gene, and connect with organizations and resources.</p>
+<p class="dn">I live with epilepsy, or care for someone who does</p>
+<p class="dd">If a gene is known, see whether a foundation, registry, or research effort exists for it, and connect with organizations and resources.</p>
 <p class="dl"><span>→ Find your gene</span><span>→ Resources</span></p>
 </a>
 
@@ -66,6 +82,7 @@ hide:
 <p class="rk">Tools anyone can use</p>
 <div class="toolsrow" markdown>
 <a class="tool" href="atlas/">Atlas &amp; network</a>
+<a class="tool" href="reports/">Reports &amp; lists</a>
 <a class="tool" href="self-assessment/">Self-assessment</a>
 <a class="tool" href="resources/">Resources</a>
 <a class="tool" href="lessons/">Lessons learned</a>

@@ -83,3 +83,9 @@ docs/index.md                            front door tools row adds a Lessons lin
 The tool captures what did not work, framed as fit not fault and anchored to a maturity track and stage. Partners are described by category, not name, by default. An optional name field is off by default, carries a warning, and is reserved for plain verifiable fact. A required attestation gates submission. Everything routes through GitHub issue review before publishing; the maintainer reviews, de-identifies, then adds the entry to `docs/assets/lessons.json`, which the browse view reads to show patterns by stage and approach. Copy and email fallbacks exist for submitters without a GitHub account.
 
 Confirm the `REPO` constant in `docs/assets/lessons.html` reads `boycelab/landscape`, same as the other tools. Have counsel review the attestation text, the named entity and right of reply language in `lessons.md`, and your own exposure for republishing submissions, before you publish.
+
+## Reports and lists (added)
+
+`docs/reports.md` and `docs/assets/report.html` add a filterable report builder over the 235 genes and the organizations derived from them. Filter by inheritance, phenotype, recorded infrastructure, network and reference membership, indicative level, and community; choose columns; sort; and export as CSV, copied TSV, copied Markdown, or print to PDF. The active filters are written into every export. Nav gains "Reports and lists: reports.md"; the front door tools row and researcher door link to it.
+
+This update also corrects the indicative level calculation in the Atlas and the report so a recorded "No" for Searchlight or CoRDS no longer counts as a natural history platform. Levels are now Foundation plus Registry plus an affirmative natural history platform for level 4, Foundation plus Registry for level 3, either one for level 2, and neither for level 1.
