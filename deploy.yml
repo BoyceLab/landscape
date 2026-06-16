@@ -1,0 +1,36 @@
+name: Publish maturity level
+description: Publish your organization's self-assessed level so peers can connect with you
+title: "Publish maturity level: "
+labels: ["maturity-level"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this after completing the self-assessment. A maintainer adds reviewed entries to the public peer directory. Nothing posts automatically.
+  - type: input
+    id: org
+    attributes:
+      label: Organization name
+    validations:
+      required: true
+  - type: input
+    id: focus
+    attributes:
+      label: Condition or gene focus
+      placeholder: e.g. STXBP1-related disorders
+  - type: dropdown
+    id: composite
+    attributes:
+      label: Overall composite level
+      options: ["1 Emerging","2 Organized","3 Connected","4 Data Generating","5 Data Sharing"]
+    validations:
+      required: true
+  - type: textarea
+    id: tracks
+    attributes:
+      label: Per-track stages (optional)
+      placeholder: "Organizational Foundation: 3\nScientific and Community Engagement: 2\n..."
+  - type: input
+    id: contact
+    attributes:
+      label: Contact for peers (email or URL, optional)

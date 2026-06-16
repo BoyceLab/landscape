@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lessons Learned</title>
+<style>:root{
+  --ink:#0e1a2b; --paper:#f6f1e7; --card:#fffdf8;
+  --purple:#6d28d9; --purple-dk:#5b21b6; --purple-lt:#8b5cf6;
+  --purple-wash:#f3eaff; --line:#e4dff0; --muted:#6b7280;
+  --gold:#b4892b; --teal:#155f83; --teal-wash:#e6f0f4;
+  --green:#1f6b4f;
+  --s1:#c2410c; --s2:#b4892b; --s3:#0e7490; --s4:#1d4ed8; --s5:#6d28d9;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5}
+.mono{font-family:ui-monospace,"SFMono-Regular","Cascadia Code",Menlo,Consolas,monospace}
+h1,h2,h3,.display{font-family:Fraunces,Georgia,"Times New Roman",serif}
+a{color:var(--purple);text-decoration:none}
+a:hover{text-decoration:underline}
+.topbar{display:flex;align-items:center;gap:18px;padding:12px 22px;background:var(--ink);color:#e9e4f5;position:sticky;top:0;z-index:30}
+.topbar .wm{font-family:Fraunces;font-weight:600;font-size:16px;color:#fff;white-space:nowrap}
+.topbar .wm small{display:block;font-family:"Public Sans";font-weight:400;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-lt)}
+.viewtabs{display:flex;gap:4px;margin-left:8px}
+.viewtabs button{background:transparent;border:1px solid transparent;color:#b8afd4;padding:7px 14px;border-radius:8px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.viewtabs button:hover{background:#241f3a;color:#fff}
+.viewtabs button.on{background:var(--purple);color:#fff}
+.topbar .home{margin-left:auto;font-size:12.5px;color:#b8afd4}
+.stagechip{font-size:10px;font-weight:800;color:#fff;border-radius:5px;padding:2px 7px;letter-spacing:.04em;white-space:nowrap}
+.draftflag{font-size:11px;color:var(--gold);border:1px solid #ecdfbf;background:#f7efdc;border-radius:6px;padding:2px 8px;font-weight:700}
+
+.page{max-width:880px;margin:0 auto;padding:22px 24px 80px}
+h1{font-size:30px;margin:0 0 6px}.lead{color:var(--muted);max-width:70ch}
+.tabs2{display:flex;gap:6px;margin:18px 0 4px;border-bottom:1px solid var(--line)}
+.tabs2 button{background:none;border:0;border-bottom:2px solid transparent;padding:9px 14px;font:inherit;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer}
+.tabs2 button.on{color:var(--purple);border-bottom-color:var(--purple)}
+.hidden{display:none}
+.callout{background:var(--purple-wash);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px;margin:12px 0}
+.warn{background:#f7efdc;border:1px solid #ecdfbf;border-radius:10px;padding:11px 13px;font-size:13px;color:#6b4e16;margin:8px 0}
+.fitfault{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--muted);margin:6px 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.flabel{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;display:block;margin-bottom:5px}
+.fhint{font-size:12px;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:620px){.row2{grid-template-columns:1fr}}
+select,input,textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;background:#fff;color:var(--ink)}
+textarea{min-height:64px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chiptog{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font:inherit;font-size:13px;cursor:pointer;font-weight:600;color:var(--ink)}
+.chiptog.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+.attest{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;margin:6px 0}
+.attest input{width:18px;height:18px;margin-top:2px;flex:none}
+.btn{background:var(--purple);color:#fff;border:0;border-radius:9px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--purple);border:1px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:default}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.namebox{margin-top:8px}
+/* browse */
+.aggwrap{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+@media(max-width:680px){.aggwrap{grid-template-columns:1fr}}
+.aggcard{border:1px solid var(--line);border-radius:11px;background:var(--card);padding:14px 16px}
+.aggcard h4{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bar{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:13px}
+.bar .track{flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar .fill{height:100%;background:var(--purple-lt)}
+.bar .lab{min-width:120px}.bar .ct{color:var(--muted);font-variant-numeric:tabular-nums}
+.lcard{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:15px 17px;margin:10px 0}
+.lcard .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.lcard .advice{font-size:15px;line-height:1.5}
+.lcard .det{font-size:13px;color:var(--muted);margin-top:8px}
+.pill{font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--purple-wash);color:var(--purple-dk);border:1px solid var(--line)}
+.pill.cat{background:var(--teal-wash);color:var(--teal);border-color:#cfe2ea}
+.empty{text-align:center;color:var(--muted);padding:30px;border:1px dashed var(--line);border-radius:12px}
+</style></head><body>
+<div class="topbar"><div class="wm">Lessons Learned<small>Research Readiness · Boyce Lab</small></div>
+  <a class="home" href="atlas.html" style="margin-left:auto">Atlas</a> <a class="home" href="../index.html">Front door</a></div>
+<div class="page">
+  <h1>What did not work, and what you would do differently</h1>
+  <p class="lead">The hardest won knowledge in this community is what to avoid. Share a lesson from your own research experience so the next organization at your stage does not repeat it. This is about fit, not fault: most lessons are a mismatch between an approach and where an organization was, not wrongdoing by anyone.</p>
+  <div class="tabs2">
+    <button id="tab-share" class="on" onclick="show('share')">Share a lesson</button>
+    <button id="tab-browse" onclick="show('browse')">Browse lessons</button>
+  </div>
+
+  <!-- SHARE -->
+  <div id="share">
+    <div class="callout">Nothing publishes automatically. A reviewer removes names, personal health information, and any phrasing that reads as a factual charge against a third party, then publishes it as your account. You stay anonymous unless you choose otherwise.</div>
+    <div class="card">
+      <div class="row2">
+        <div><label class="flabel">Where in the maturity model <span class="fhint">which track</span></label>
+          <select id="track" onchange="fillStages()"></select></div>
+        <div><label class="flabel">Stage you were at</label>
+          <select id="stage"></select></div>
+      </div>
+      <div style="margin-top:14px"><label class="flabel">The decision you made <span class="fhint">what you tried</span></label>
+        <textarea id="decision" placeholder="e.g. We stood up a patient reported registry on a commercial platform to start collecting structured data."></textarea></div>
+      <div style="margin-top:14px"><label class="flabel">Type of approach or partner <span class="fhint">a category, not a name</span></label>
+        <select id="category"></select></div>
+      <div style="margin-top:14px"><label class="flabel">What you expected, and what actually happened</label>
+        <textarea id="gap" placeholder="e.g. We expected quick enrollment. Setup took two quarters, the survey logic did not fit our phenotype, and families dropped off before completing it."></textarea></div>
+      <div style="margin-top:14px"><label class="flabel">What it cost you <span class="fhint">select all that apply</span></label>
+        <div class="chips" id="costs"></div></div>
+      <div style="margin-top:14px"><label class="flabel">What you would tell a peer at the same stage <span class="fhint">the part others will read first</span></label>
+        <textarea id="advice" placeholder="e.g. Pin down your core data elements and test the survey with five families before you sign anything. Ask every platform how export and data ownership work on day one."></textarea></div>
+
+      <div style="margin-top:14px">
+        <label class="attest"><input type="checkbox" id="namechk" onchange="document.getElementById('namebox').classList.toggle('hidden',!this.checked)">
+          <span>I need to name a specific organization, product, or person.</span></label>
+        <div id="namebox" class="namebox hidden">
+          <div class="warn">Name only if you can state plain, verifiable fact (for example, a contract term or a documented outage), not a characterization. Naming triggers stricter review and a right of reply for the named party. When in doubt, leave it as a category above.</div>
+          <input id="named" placeholder="The entity, and the factual statement only">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="callout" style="margin-top:0">This lesson is published <b>anonymously</b> by default. Most lessons are more useful, and safer to share, without a name attached. You can choose to attribute it.</div>
+      <label class="attest"><input type="checkbox" id="attribchk" onchange="document.getElementById('attribbox').classList.toggle('hidden',!this.checked)">
+        <span>Attribute this lesson to our organization</span></label>
+      <div id="attribbox" class="namebox hidden">
+        <div class="row2">
+          <div><label class="flabel">Organization name</label><input id="org" placeholder="Your organization"></div>
+          <div><label class="flabel">Contact for peers <span class="fhint">optional</span></label><input id="contact" placeholder="email or URL, if peers may reach you"></div>
+        </div>
+      </div>
+      <label class="attest" style="margin-top:14px"><input type="checkbox" id="attest">
+        <span>This is our organization's own experience, accurate to our knowledge. I understand it will be published as our account after review, and that it is shared as experience and opinion, not a statement of fact about others.</span></label>
+      <div class="btnrow">
+        <button class="btn" id="submitbtn" onclick="submitGH()" disabled>Submit for review on GitHub →</button>
+        <button class="btn ghost" onclick="copyLesson()">Copy</button>
+        <button class="btn ghost" onclick="downloadLesson()">Download (.txt)</button>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px">No GitHub account? Use Copy or Download and email it to <a href="mailto:danielle@boycedatascience.com">danielle@boycedatascience.com</a>.</p>
+    </div>
+  </div>
+
+  <!-- BROWSE -->
+  <div id="browse" class="hidden">
+    <p class="lead">Patterns across what organizations have shared. The individual lessons appear below, de-identified, with the advice surfaced.</p>
+    <div id="aggregate"></div>
+    <h3 style="margin-top:22px">Lessons</h3>
+    <div id="lessonlist"></div>
+  </div>
+</div>
+<script>
+const MM={"stages":[{"id":1,"name":"Emerging","blurb":"An informal community exists. No legal or research infrastructure."},{"id":2,"name":"Organized","blurb":"Incorporated and governed. Beginning to think about research."},{"id":3,"name":"Connected","blurb":"Plugged into the broader research ecosystem. Collecting structured information about patients."},{"id":4,"name":"Data Generating","blurb":"Operating registries or natural history infrastructure. Producing data with intent."},{"id":5,"name":"Data Sharing","blurb":"Contributing standardized, documented data or metadata to shared or open resources for use beyond the org."}],"composite_rule":"An org's composite level is roughly the lowest stage it has reliably reached across the core tracks. You cannot be Data Sharing overall if you have no governance. The tracks show exactly where an org is ahead or behind.","tracks":[{"id":"foundation","name":"Organizational Foundation","stages":[{"s":1,"label":"Informal community","q":["Do we have a space where patients and families find each other?","Does someone informally keep things going?"],"needs":"Turning a loose group into something durable; understanding what becoming an organization involves.","help":["Plain language orientation on nonprofit formation","Connect founders to peer organizations who have made the leap"]},{"s":2,"label":"Unincorporated association","q":["Do we have identified leaders, even without legal status?","Do we have a shared mission written down?"],"needs":"The legal and administrative mechanics of incorporation; drafting governing documents.","help":["Pro bono legal services for incorporation and bylaws","Governance templates","Board recruitment guidance"]},{"s":3,"label":"Incorporated nonprofit","q":["Are we a registered nonprofit with bylaws and a functioning board?","Can we legally accept donations and enter agreements?"],"needs":"Moving from legally exists to actually operating; first strategic plan; early fundraising.","help":["Strategic planning facilitation","Grant writing support","Nonprofit financial and accounting services"]},{"s":4,"label":"Staffed and resourced","q":["Do we have paid staff or a dedicated contractor?","Do we have a strategic plan and a research budget line?"],"needs":"Building research capacity; hiring the right roles; sustainable funding.","help":["Research operations consulting","Advice on hiring a research lead","Introductions to research funders"]},{"s":5,"label":"Sustainable","q":["Do we have diversified funding and someone leading research?","Could the org survive its founder's departure?"],"needs":"Succession, long term sustainability, scaling impact.","help":["Executive coaching and succession planning","Endowment or reserve building strategy","Governance maturity review"]}]},{"id":"engagement","name":"Scientific and Community Engagement","stages":[{"s":1,"label":"Peer support","q":["Do members share experiences and information?"],"needs":"Recognizing the community's value as a research asset.","help":["Educate the community on how patient experience informs research","Introduce the concept of patient reported data"]},{"s":2,"label":"Awareness and connecting","q":["Do we help families find clinicians or trials?","Do we do awareness raising beyond our members?"],"needs":"Identifying which clinicians and researchers work on their condition.","help":["Clinician and researcher landscape mapping","Trial finder navigation support"]},{"s":3,"label":"Priorities from community","q":["Have we asked our community what research is important to them?","Do we have a group that channels patient input into priorities?"],"needs":"Running a credible priority setting process.","help":["Facilitate a research priority setting exercise (James Lind Alliance style)","Survey design"]},{"s":4,"label":"Advisory board","q":["Do we have a scientific or medical advisory board that meets and influences decisions?"],"needs":"Recruiting credible experts; running an effective board.","help":["Serve on or help recruit the advisory board","Advise on charters and conflict of interest policy"]},{"s":5,"label":"Agenda setting","q":["Do we help define the research agenda for our condition?","Have researchers co-designed studies with us?"],"needs":"Sustaining genuine co-design as the org scales.","help":["Partner as a co-investigator","Build patient engagement into grant proposals as a named partner"]}]},{"id":"ecosystem","name":"Ecosystem Integration","stages":[{"s":1,"label":"Isolated","q":["Are we essentially working on our own?"],"needs":"Knowing the ecosystem exists and how to enter it.","help":["Introductions to consortia and umbrella organizations","An ecosystem map"]},{"s":2,"label":"Informal ties","q":["Do we have a relationship with at least one researcher or clinician?"],"needs":"Converting a single relationship into broader engagement.","help":["Warm introductions to relevant consortia (REN, CombinedBrain, NORD)"]},{"s":3,"label":"Consortium member","q":["Are we an active member of a consortium or umbrella?"],"needs":"Getting real value from membership, not just belonging.","help":["Advise on how to participate actively","Identify collaboration opportunities within the consortium"]},{"s":4,"label":"Active collaborations","q":["Are we in shared projects with other organizations?"],"needs":"Managing multi party projects and data sharing across orgs.","help":["Project management support","Multi site agreement and data governance templates"]},{"s":5,"label":"Recognized node","q":["Do others come to us as a partner or convener?"],"needs":"The load of convening; staying strategic.","help":["Infrastructure or staffing to support a convening role","Co-host workshops"]}]},{"id":"data","name":"Data Infrastructure","stages":[{"s":1,"label":"No structured data","q":["Is most of what we know anecdotal or scattered?"],"needs":"Understanding what structured data is and its importance.","help":["A plain language primer on registries","Help define what data would be worth collecting"]},{"s":2,"label":"Contact registry","q":["Do we have a maintained list of who our patients are and how to reach them?"],"needs":"Moving from a contact list to research data; privacy basics.","help":["Advise on consent for re-contact","Help select a registry platform if they decide they want that"]},{"s":3,"label":"Patient reported registry","q":["Do we collect structured patient reported data on a real platform, with meaningful enrollment?"],"needs":"Survey and instrument quality; boosting enrollment and retention.","help":["Instrument design and validation","Recruitment strategy","Biostatistics consultation"]},{"s":4,"label":"Natural history and longitudinal","q":["Are we collecting data over time with a defined data model?"],"needs":"Clinical data collection, longitudinal follow up, data quality.","help":["Natural history study design","Clinical data management","REDCap or equivalent setup"]},{"s":5,"label":"Harmonized to standards","q":["Is our data mapped to common standards and combinable with other datasets?"],"needs":"Mapping to common data elements; interoperability.","help":["Data harmonization services","Ontology and common data element mapping","Informatics support"]}]},{"id":"governance","name":"Data Governance and Sharing","north_star":true,"stages":[{"s":1,"label":"No governance","q":["Are we holding data without a clear consent or privacy framework?"],"needs":"Basic consent, privacy, and ethics; understanding obligations.","help":["Draft research consent and privacy policies","IRB and ethics navigation"]},{"s":2,"label":"Internal governance","q":["Do we have consent and privacy policies, with data held internally?"],"needs":"Preparing data to be intelligible and shareable beyond the org.","help":["Review consent for whether it permits future sharing","Introduce data sharing concepts"]},{"s":3,"label":"Documented and standardized","q":["Do we have a published data dictionary and standardized variables?","Could an outsider understand our dataset from the documentation alone?"],"needs":"Writing and publishing a data dictionary; standardizing variables.","help":["Build the data dictionary","Map variables to common data elements","Documentation support"]},{"s":4,"label":"Shared with a partner","q":["Have we shared data with a vetted partner under a formal agreement (Data for the Common Good, RDCA-DAP)?","Do we have a governance policy for how sharing decisions get made?"],"needs":"Data sharing agreements; a governance process for access requests.","help":["Draft data sharing and use agreements","Set up a data access committee","Broker partner relationships"]},{"s":5,"label":"Open and broadly accessible","q":["Is our data or metadata findable by researchers beyond named partners, meeting FAIR principles?","Can qualified researchers discover and request it through a defined process?"],"needs":"Making data FAIR; sustaining open access responsibly.","help":["FAIR-ification services","Deposit into recognized repositories","Publish discoverable metadata even when raw data stays controlled"]}]}]}; const REPO="boycelab/landscape";
+const CATEGORIES=["Commercial registry platform","Academic or self-hosted REDCap build","Free coordinated registry (e.g. CoRDS)","Patient reported survey platform","Biobank or biorepository","Consultant or advisor","Contract research organization","Data sharing partner or repository","EHR or data aggregator","Grant or funding approach","Consent or governance approach","Recruitment or engagement approach","Other"];
+const COSTS=["Time","Money","Enrollment","Data quality","Trust with families","Staff burnout","Vendor lock in","Rework","Little or none"];
+const SC={1:'var(--s1)',2:'var(--s2)',3:'var(--s3)',4:'var(--s4)',5:'var(--s5)'};
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+const sel={costs:new Set()};
+
+function show(v){
+  document.getElementById('share').classList.toggle('hidden',v!=='share');
+  document.getElementById('browse').classList.toggle('hidden',v!=='browse');
+  document.getElementById('tab-share').classList.toggle('on',v==='share');
+  document.getElementById('tab-browse').classList.toggle('on',v==='browse');
+  if(v==='browse') loadBrowse();
+}
+// build selects
+const trackSel=document.getElementById('track');
+MM.tracks.forEach((t,i)=>{const o=document.createElement('option');o.value=t.id;o.textContent=t.name;trackSel.appendChild(o);});
+function fillStages(){
+  const trk=MM.tracks.find(t=>t.id===trackSel.value)||MM.tracks[0];
+  const s=document.getElementById('stage');s.innerHTML='';
+  trk.stages.forEach(st=>{const o=document.createElement('option');o.value=st.s;o.textContent=`Stage ${st.s} — ${st.label}`;s.appendChild(o);});
+}
+fillStages();
+const catSel=document.getElementById('category');
+CATEGORIES.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;catSel.appendChild(o);});
+const costWrap=document.getElementById('costs');
+COSTS.forEach(c=>{const b=document.createElement('button');b.className='chiptog';b.type='button';b.textContent=c;
+  b.onclick=()=>{b.classList.toggle('on');if(sel.costs.has(c))sel.costs.delete(c);else sel.costs.add(c);};costWrap.appendChild(b);});
+document.getElementById('attest').addEventListener('change',e=>{document.getElementById('submitbtn').disabled=!e.target.checked;});
+
+function gather(){
+  const trk=MM.tracks.find(t=>t.id===trackSel.value);
+  return {track:trk?trk.name:'',stage:document.getElementById('stage').value,
+    decision:document.getElementById('decision').value,category:catSel.value,
+    gap:document.getElementById('gap').value,costs:[...sel.costs],
+    advice:document.getElementById('advice').value,
+    named:document.getElementById('namechk').checked?document.getElementById('named').value:'',
+    org:(document.getElementById('attribchk').checked && document.getElementById('org').value)?document.getElementById('org').value:'Anonymous',
+    contact:document.getElementById('attribchk').checked?document.getElementById('contact').value:''};
+}
+function lessonText(L){
+  return `Lessons learned submission\n\nTrack: ${L.track}\nStage: ${L.stage}\nApproach type: ${L.category}\n\nDecision: ${L.decision}\n\nExpected vs happened: ${L.gap}\n\nCost: ${L.costs.join(', ')||'-'}\n\nAdvice to a peer at this stage: ${L.advice}\n\nNamed entity (review carefully): ${L.named||'none'}\n\nOrganization: ${L.org}\nContact: ${L.contact||'-'}\n\n[Submitter attested this is their own experience. Maintainer: review, de-identify, then add to lessons.json.]`;
+}
+function submitGH(){
+  const L=gather();if(!L.advice.trim()){alert('Add the advice for a peer before submitting.');return;}
+  const url=`https://github.com/${REPO}/issues/new?title=`+encodeURIComponent('Lesson learned: '+L.track+' Stage '+L.stage)+
+    '&labels=lessons-learned&body='+encodeURIComponent(lessonText(L));
+  window.open(url,'_blank','noopener');
+}
+function copyLesson(){navigator.clipboard.writeText(lessonText(gather())).then(()=>alert('Copied.'));}
+function downloadLesson(){const b=new Blob([lessonText(gather())],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='lesson-learned.txt';a.click();}
+
+// BROWSE
+function loadBrowse(){
+  fetch('lessons.json').then(r=>r.json()).then(d=>render(d.lessons||[])).catch(()=>render([]));
+}
+function render(L){
+  const agg=document.getElementById('aggregate'),list=document.getElementById('lessonlist');
+  if(!L.length){agg.innerHTML='';list.innerHTML='<div class="empty">No lessons have been published yet. Be the first to share what you would do differently. Once a handful are in, the patterns across stages and approaches appear here.</div>';return;}
+  function tally(key,fn){const m={};L.forEach(x=>{(fn(x)||[]).forEach? (fn(x)||[]).forEach(v=>m[v]=(m[v]||0)+1):(m[fn(x)]=(m[fn(x)]||0)+1)});return m;}
+  function bars(title,m){const max=Math.max(1,...Object.values(m));
+    const rows=Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([k,v])=>
+      `<div class="bar"><span class="lab">${esc(k)}</span><span class="track"><span class="fill" style="width:${v/max*100}%"></span></span><span class="ct">${v}</span></div>`).join('');
+    return `<div class="aggcard"><h4>${title}</h4>${rows}</div>`;}
+  const byStage={};L.forEach(x=>{const k='Stage '+x.stage;byStage[k]=(byStage[k]||0)+1;});
+  const byCat={};L.forEach(x=>{byCat[x.category]=(byCat[x.category]||0)+1;});
+  const byCost={};L.forEach(x=>(x.costs||[]).forEach(c=>byCost[c]=(byCost[c]||0)+1));
+  agg.innerHTML=`<div class="aggwrap">${bars('By stage',byStage)}${bars('By approach type',byCat)}${bars('Most cited cost',byCost)}</div>`;
+  list.innerHTML=L.map(x=>`<div class="lcard">
+    <div class="meta"><span class="pill" style="background:${SC[x.stage]||'var(--purple-wash)'};color:#fff;border:0">${esc(x.track||'')} · Stage ${esc(String(x.stage||''))}</span>
+      <span class="pill cat">${esc(x.category||'')}</span>${(x.costs||[]).map(c=>`<span class="pill">${esc(c)}</span>`).join('')}</div>
+    <div class="advice">${esc(x.advice||'')}</div>
+    ${x.gap?`<div class="det"><b>What happened:</b> ${esc(x.gap)}</div>`:''}
+    ${x.org&&x.org!=='Anonymous'?`<div class="det">— ${esc(x.org)}${x.contact?` · <a href="${esc(x.contact)}">contact</a>`:''}</div>`:'<div class="det">— Anonymous organization</div>'}
+  </div>`).join('');
+}
+</script></body></html>

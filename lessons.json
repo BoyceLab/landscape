@@ -1,0 +1,5 @@
+{
+  "schema": "published-levels/v1",
+  "note": "Organizations that have opted in to publish their self-assessed maturity level. Add reviewed submissions here. composite is 1-5; per-track stages optional.",
+  "organizations": []
+}

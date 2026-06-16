@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Async User Testing</title>
+<style>:root{
+  --ink:#0e1a2b; --paper:#f6f1e7; --card:#fffdf8;
+  --purple:#6d28d9; --purple-dk:#5b21b6; --purple-lt:#8b5cf6;
+  --purple-wash:#f3eaff; --line:#e4dff0; --muted:#6b7280;
+  --gold:#b4892b; --teal:#155f83; --teal-wash:#e6f0f4;
+  --green:#1f6b4f;
+  --s1:#c2410c; --s2:#b4892b; --s3:#0e7490; --s4:#1d4ed8; --s5:#6d28d9;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5}
+.mono{font-family:ui-monospace,"SFMono-Regular","Cascadia Code",Menlo,Consolas,monospace}
+h1,h2,h3,.display{font-family:Fraunces,Georgia,"Times New Roman",serif}
+a{color:var(--purple);text-decoration:none}
+a:hover{text-decoration:underline}
+.topbar{display:flex;align-items:center;gap:18px;padding:12px 22px;background:var(--ink);color:#e9e4f5;position:sticky;top:0;z-index:30}
+.topbar .wm{font-family:Fraunces;font-weight:600;font-size:16px;color:#fff;white-space:nowrap}
+.topbar .wm small{display:block;font-family:"Public Sans";font-weight:400;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-lt)}
+.viewtabs{display:flex;gap:4px;margin-left:8px}
+.viewtabs button{background:transparent;border:1px solid transparent;color:#b8afd4;padding:7px 14px;border-radius:8px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.viewtabs button:hover{background:#241f3a;color:#fff}
+.viewtabs button.on{background:var(--purple);color:#fff}
+.topbar .home{margin-left:auto;font-size:12.5px;color:#b8afd4}
+.stagechip{font-size:10px;font-weight:800;color:#fff;border-radius:5px;padding:2px 7px;letter-spacing:.04em;white-space:nowrap}
+.draftflag{font-size:11px;color:var(--gold);border:1px solid #ecdfbf;background:#f7efdc;border-radius:6px;padding:2px 8px;font-weight:700}
+
+.page{max-width:780px;margin:0 auto;padding:26px 24px 80px}
+h1{font-size:30px;margin:0 0 6px}.lead{color:var(--muted);max-width:68ch}
+.rolepick{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0}
+@media(max-width:600px){.rolepick{grid-template-columns:1fr}}
+.rolecard{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:16px 18px;cursor:pointer;text-align:left;font:inherit}
+.rolecard:hover{border-color:var(--purple-lt)}
+.rolecard b{font-size:16px}.rolecard span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.task{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.task .ti{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.task .tt{font-size:16px;margin:6px 0 4px;font-weight:600}
+.task .look{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:12px}
+.opts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.opt{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 14px;font:inherit;font-size:13px;cursor:pointer;font-weight:600}
+.opt.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+.rate{display:flex;gap:6px;margin:4px 0 10px}
+.rate button{width:34px;height:34px;border:1px solid var(--line);background:#fff;border-radius:8px;font:inherit;cursor:pointer;font-weight:700}
+.rate button.on{background:var(--gold);color:#fff;border-color:var(--gold)}
+.flabel{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;margin-top:4px;min-height:54px}
+.btn{background:var(--purple);color:#fff;border:0;border-radius:9px;padding:10px 20px;font:inherit;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--purple);border:1px solid var(--line)}
+.section{margin:24px 0}.section h3{font-size:18px;margin:0 0 8px}
+.hidden{display:none}
+.callout{background:var(--purple-wash);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px;margin:12px 0}
+</style></head><body>
+<div class="topbar"><div class="wm">User Testing<small>Asynchronous · Boyce Lab</small></div>
+  <a class="home" href="../index.html" style="margin-left:auto">Front door</a></div>
+<div class="page">
+  <div id="intro">
+    <h1>Help us test the Living Atlas</h1>
+    <p class="lead">This takes about fifteen minutes and you can do it on your own time. Pick the role that best describes you, work through a few short tasks in the Atlas, and tell us what worked and what did not. Open the Atlas in a second tab so you can switch back and forth.</p>
+    <div class="callout">Nothing is recorded automatically. At the end you choose how to send your feedback: copy it, download it, or open a pre-filled GitHub submission.</div>
+    <a class="btn ghost" href="atlas.html" target="_blank">Open the Atlas in a new tab ↗</a>
+    <div class="section"><h3>Which role fits you best?</h3>
+      <div class="rolepick" id="rolepick"></div>
+    </div>
+  </div>
+  <div id="test" class="hidden">
+    <h1 id="roletitle"></h1>
+    <p class="lead">For each task: try it in the Atlas, then mark how it went. Be blunt. Difficulty is 1 (effortless) to 5 (could not do it).</p>
+    <div id="tasks"></div>
+    <div class="section"><h3>A few questions overall</h3>
+      <div class="task">
+        <div class="flabel">Overall, how easy was the Atlas to use? (1 hard, 5 easy)</div>
+        <div class="rate" data-q="ease"></div>
+        <div class="flabel">Did you find what you needed?</div>
+        <div class="opts" data-q="found"><button class="opt" data-v="Yes">Yes</button><button class="opt" data-v="Partly">Partly</button><button class="opt" data-v="No">No</button></div>
+        <div class="flabel">What was confusing or slow?</div><textarea data-q="confusing"></textarea>
+        <div class="flabel" style="margin-top:10px">What was missing that you expected?</div><textarea data-q="missing"></textarea>
+        <div class="flabel" style="margin-top:10px">Would you recommend this to a colleague? (1 no, 5 absolutely)</div>
+        <div class="rate" data-q="nps"></div>
+      </div>
+    </div>
+    <div class="section"><h3>Send your feedback</h3>
+      <button class="btn" onclick="submitGH()">Open GitHub submission →</button>
+      <button class="btn ghost" onclick="copyFb()">Copy</button>
+      <button class="btn ghost" onclick="dlFb()">Download (.txt)</button>
+    </div>
+  </div>
+</div>
+<script>
+const TASKS={"researcher":{"label":"Researcher","tasks":[{"t":"Open the Atlas Reference view and find the canonical ClinVar link for SCN1A.","look":"Were the reference links easy to locate and trustworthy?"},{"t":"In the Network view, center a gene and identify which advocacy organizations connect to it.","look":"Did the network help you see relationships you could not see in a table?"},{"t":"Browse one community cluster and describe what holds it together.","look":"Was the community structure interpretable?"}]},"family":{"label":"Person with lived experience or caregiver","tasks":[{"t":"Find whether a foundation or registry exists for a gene you care about.","look":"Could you tell quickly whether support exists?"},{"t":"Start the self-assessment and read your overall level and matched resources.","look":"Did the result feel fair and the next steps clear?"},{"t":"Find how to connect with another organization at your level.","look":"Was the opt-in and peer connection understandable?"}]},"team":{"label":"Teacher or team member","tasks":[{"t":"Find the maturity model and open one cell to read its questions.","look":"Did the model make sense without prior explanation?"},{"t":"From the front door, find the path meant for your role.","look":"Did the front door send you somewhere useful?"}]},"physician":{"label":"Physician","tasks":[{"t":"Find a gene's inheritance pattern and phenotype in under thirty seconds.","look":"Was the clinical summary fast to read?"},{"t":"Locate an FDA patient-focused drug development report link for a gene that has one.","look":"Was regulatory and clinical context discoverable?"}]}}; const REPO="boycelab/landscape";
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+const fb={role:'',tasks:[],survey:{}};
+const rp=document.getElementById('rolepick');
+Object.entries(TASKS).forEach(([k,v])=>{const b=document.createElement('button');b.className='rolecard';
+  b.innerHTML=`<b>${esc(v.label)}</b><span>${v.tasks.length} short tasks</span>`;b.onclick=()=>startRole(k);rp.appendChild(b);});
+function startRole(k){fb.role=TASKS[k].label;document.getElementById('intro').classList.add('hidden');
+  document.getElementById('test').classList.remove('hidden');
+  document.getElementById('roletitle').textContent='Tasks for: '+TASKS[k].label;
+  const box=document.getElementById('tasks');box.innerHTML='';
+  TASKS[k].tasks.forEach((t,i)=>{fb.tasks[i]={task:t.t,outcome:'',difficulty:0,note:''};
+    const d=document.createElement('div');d.className='task';
+    d.innerHTML=`<div class="ti">Task ${i+1}</div><div class="tt">${esc(t.t)}</div><div class="look">${esc(t.look)}</div>
+      <div class="flabel">Could you complete it?</div>
+      <div class="opts" data-i="${i}" data-k="outcome"><button class="opt" data-v="Completed">Completed</button><button class="opt" data-v="Partly">Partly</button><button class="opt" data-v="Could not">Could not</button></div>
+      <div class="flabel">Difficulty</div><div class="rate" data-i="${i}" data-k="difficulty"></div>
+      <div class="flabel">Anything to note?</div><textarea data-i="${i}" data-k="note"></textarea>`;
+    box.appendChild(d);});
+  document.querySelectorAll('.rate').forEach(buildRate);
+  document.querySelectorAll('.opts').forEach(o=>o.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    o.querySelectorAll('.opt').forEach(x=>x.classList.toggle('on',x===b));
+    const i=o.dataset.i,k=o.dataset.k,q=o.dataset.q;
+    if(q){fb.survey[q]=b.dataset.v;}else{fb.tasks[i][k]=b.dataset.v;}}));
+  document.querySelectorAll('textarea').forEach(t=>t.oninput=()=>{const i=t.dataset.i,k=t.dataset.k,q=t.dataset.q;
+    if(q){fb.survey[q]=t.value;}else{fb.tasks[i][k]=t.value;}});
+  window.scrollTo(0,0);
+}
+function buildRate(r){for(let n=1;n<=5;n++){const b=document.createElement('button');b.textContent=n;
+  b.onclick=()=>{r.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    const i=r.dataset.i,k=r.dataset.k,q=r.dataset.q;
+    if(q){fb.survey[q]=n;}else{fb.tasks[i][k]=n;}};r.appendChild(b);}}
+function fbText(){
+  let s=`Living Atlas user test\nRole: ${fb.role}\n\nTasks:\n`;
+  fb.tasks.forEach((t,i)=>{s+=`${i+1}. ${t.task}\n   outcome: ${t.outcome||'-'} | difficulty: ${t.difficulty||'-'} | note: ${t.note||'-'}\n`;});
+  s+=`\nOverall:\n  ease: ${fb.survey.ease||'-'}\n  found what needed: ${fb.survey.found||'-'}\n  confusing: ${fb.survey.confusing||'-'}\n  missing: ${fb.survey.missing||'-'}\n  would recommend: ${fb.survey.nps||'-'}\n`;
+  return s;}
+function submitGH(){const body=fbText();
+  const url=`https://github.com/${REPO}/issues/new?title=${encodeURIComponent('User test: '+fb.role)}&labels=user-testing&body=${encodeURIComponent(body)}`;
+  window.open(url,'_blank');}
+function copyFb(){navigator.clipboard.writeText(fbText()).then(()=>alert('Feedback copied.'));}
+function dlFb(){const b=new Blob([fbText()],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='atlas-user-test.txt';a.click();}
+</script></body></html>

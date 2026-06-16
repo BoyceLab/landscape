@@ -1,0 +1,42 @@
+name: Record update
+description: Correct or add information for a gene or organization in the Living Atlas
+title: "Record update: "
+labels: ["record-update"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep the Atlas accurate. Tell us the one thing to change and where it comes from, so it can be verified and published quickly.
+  - type: input
+    id: record
+    attributes:
+      label: Gene or record
+      placeholder: e.g. SCN1A
+    validations:
+      required: true
+  - type: input
+    id: field
+    attributes:
+      label: Field to change
+      placeholder: e.g. Registry URL, foundation name, platform link, inheritance
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: Correct value
+      placeholder: The accurate information
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: A link or citation so we can verify the change
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Your contact (optional)
+      placeholder: email or organization, if you would like a reply

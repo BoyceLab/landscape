@@ -1,68 +1,140 @@
-# Testing
+# Approach and rubric
 
-We treat this resource as a piece of software, not a static document. That means it gets tested with real people — clinicians, foundation staff, families, researchers — before substantial releases, and on a quieter cadence in between. The pages in this section describe how that testing works, and how to participate if you'd like to.
+This page describes the methodology behind a testing cycle: roles, the pre-test checklist, how testers are selected, what activities they work through, how we score the results, and what triggers a revision.
 
-## Why test a reference resource
+If you're new to user testing, start with the [Overview](index.md). If you're about to run a session, skip to [Running a session](facilitator-guide.md).
 
-Most landscape resources are written, posted, and then quietly drift out of date. We want to know whether this one actually works for the people it's meant to serve — whether a clinician can find what they need in the moment, whether a parent who just received a diagnosis can navigate it without help, whether a foundation staffer thinks their community is represented accurately.
+## A successful cycle answers four questions
 
-That kind of knowledge doesn't come from analytics. It comes from sitting with someone for 90 minutes and watching them use the site.
+1. Within 30 seconds of landing on the site, can a new visitor tell what this resource is and who it is for?
+2. Can users from each target audience find the specific information they came for without external guidance?
+3. Do users correctly interpret the status categories, badges, and other classifications without misreading them?
+4. Does the site work reliably across the devices, browsers, and accessibility tools real users bring to it?
 
-## What testing involves
+If the answer to any of these is "no," testing has surfaced a gap that would otherwise erode trust in the resource.
 
-A typical session looks like this:
+## Roles
 
-- **About 60–90 minutes** on a video call (or in person, if local).
-- We show the dashboard and ask for a first reaction in 30 seconds — before any scrolling or clicking.
-- The tester explores freely for a few minutes, thinking aloud.
-- We work through a small set of realistic tasks tailored to the tester's background: looking up a specific gene, finding all conditions with certain features, deciding whether a piece of information is trustworthy.
-- A quick check on a phone or tablet, so we know the site holds up on the devices people actually use.
-- An open conversation at the end about what worked, what didn't, and what's missing.
+One person can hold more than one role on a small project — but the Independent Reviewer must not be the same person who made the change being reviewed.
 
-After the session, the tester fills out a short feedback form. We follow up later to show what changed because of their feedback — partly because they earned the update, and partly because we want them to know their time mattered.
+| Role | Responsibility |
+|------|----------------|
+| UAT Lead | Owns the testing process end-to-end. Recruits testers, runs orientations, triages feedback, decides what gets revised, signs off on release readiness. |
+| Site Owner / Editor | Maintains the dashboard content and the underlying data. Responds to substantive questions raised during testing. |
+| Developer / Maintainer | Implements functional, design, and accessibility fixes. May be the same person as the Site Owner on small projects. |
+| Pilot Testers | External users matching the target audiences. Must be independent of the site's development. |
+| Independent Reviewer | Confirms revisions resolve the issues raised. Must not be the person who made the change. |
 
-## What we test for
+## Pre-test readiness check
 
-Four questions, in order of importance:
+Before involving external testers, the UAT Lead confirms:
 
-1. **First-impression clarity.** Within 30 seconds, can a new visitor tell what this is and who it's for?
-2. **Findability.** Can users from each audience find what they came for without external guidance?
-3. **Interpretation.** Do the status categories, badges, and other classifications mean what we think they mean — to the people reading them?
-4. **Reliability.** Does the site work across the devices, browsers, and accessibility tools real users bring to it?
+- The site loads on the production or staging URL without console errors.
+- All interactive controls (filters, sorts, modals) function on at least one desktop and one mobile browser.
+- Every external link in the dataset has been spot-checked in the most prominent rows.
+- The "Suggest a correction" workflow has been tested end-to-end and routes to a monitored inbox.
+- The data source list, last-updated date, and ownership/attribution are visible on the site itself.
+- An accessibility quick-scan has been run (axe DevTools, WAVE, or Lighthouse) and obvious failures fixed.
+- Analytics or session-capture tooling is configured if used during testing — with testers informed.
 
-The full rubric and how we score it lives on the [Approach and rubric](approach.md) page.
+Time spent here protects testers' goodwill and prevents wasted cycles.
 
-## Who we test with
+## Selecting testers
 
-We aim for a small panel — three to five people per cycle — covering the audiences this resource actually serves:
+Recruit three to five testers covering the site's distinct audiences. A reference dashboard serves multiple user types whose friction points don't overlap; a single perspective will miss the friction the others experience.
 
-- Clinicians, especially neurologists and clinical geneticists
-- Foundation staff and advocacy group leadership
-- Patients and family members, usually recruited through foundation partners
-- Researchers, both academic and industry-side
+### Audience personas
 
-A single audience won't surface the friction the others experience. The classification system that's obvious to a researcher may baffle a family; the language that works for a family may feel imprecise to a clinician. So we cover them all, even when the panel is small.
+| Persona | What they need | What to watch for |
+|---------|----------------|-------------------|
+| Clinician (neurologist, geneticist) | Quick lookup of a specific gene; clinical context; pointers to registries or trials for a newly diagnosed patient. | Whether clinical terminology is used correctly; whether the path from gene to actionable resource is short. |
+| Foundation / advocacy staff | Landscape view of the field; comparing community maturity; identifying gaps. | Whether status categories make sense to someone embedded in the space; whether their own foundation is represented accurately. |
+| Patient or family member | Plain-language information; finding a community, registry, or trial relevant to a diagnosis. | Whether jargon blocks comprehension; whether emotional weight is handled with care; whether next steps are clear. |
+| Researcher (academic or industry) | Survey of where infrastructure exists; pointers to data sources, collaborators, partnerships. | Whether sources and methods are transparent; whether the resource can be cited. |
 
-## What this is not
+### Selection criteria
 
-This isn't a research study. We're not generating publishable usability data, we don't run statistical analyses on the ratings, and we don't ask testers to do anything that would require IRB review. It's pragmatic, lightweight, and aimed at making the resource better for the next person who lands on it.
+| Criterion | Ideal | Acceptable |
+|-----------|-------|------------|
+| Independence | No prior involvement in building or sponsoring the site. | Loose familiarity. |
+| Domain fit | Actively works in the condition area covered. | Strong adjacent expertise. |
+| Audience coverage | Panel collectively covers all four personas. | At least three of four; gap documented. |
+| Device diversity | At least one mobile-only user, one desktop user, and one assistive-technology user. | At least one mobile and one desktop. |
+| Availability | 60–90 minutes within a one-week window. | At least 45 minutes within a flexible window. |
+| Conflicts | No financial or organizational stake in how their community is represented. | Minor conflicts disclosed and reviewed. |
 
-We also don't pretend it's exhaustive. Five testers will not catch everything. The point of running this on a regular cadence — quarterly, plus before any major release — is that issues missed in one cycle get caught in the next.
+## Testing activities
 
-## The toolkit, made public
+Testers work through the activities below in order. The first two must happen before free exploration — first-impression timing only works once.
 
-We've made the testing materials we use available in this section, partly for transparency and partly because other communities building similar resources have asked for them. Each page is self-contained and can be adapted to a different project. The tone is occasionally idiosyncratic; please rewrite to sound like you.
+| Activity | What "good" looks like |
+|----------|------------------------|
+| First impression (≤ 30 seconds, no scrolling) | Tester correctly summarizes what the site is, who it's for, and what they could do with it. |
+| Orientation pass (2–3 min of free exploration) | Tester locates filters, legend, data source, and feedback mechanism without help. |
+| Interpret classifications | Tester describes each category accurately in their own words, matching the legend. |
+| Guided lookup tasks (3–5 per persona, from the [task bank](task-bank.md)) | Tester completes each with a reasonably direct path. |
+| Filter and sort behavior | Filters narrow the table as expected; sorts behave predictably. |
+| External link spot check | Sampled links resolve to expected destinations. |
+| Feedback workflow | Tester locates and successfully uses the "Suggest a correction" affordance. |
+| Cross-device check | Functionality and readability preserved on a different device. |
 
-[Approach and rubric](approach.md){ .md-button }
-[Running a session](facilitator-guide.md){ .md-button }
-[For testers](welcome-packet.md){ .md-button }
-[Outreach templates](outreach.md){ .md-button }
-[Task bank](task-bank.md){ .md-button }
-[Feedback form](feedback-form.md){ .md-button }
-[Synthesis and release](synthesis.md){ .md-button }
+## The rubric
 
-## Want to help us test?
+We score each dimension against three levels. A dimension falling into the rightmost column triggers a revision cycle before release. Look for patterns across testers, not isolated complaints — though a single severe accessibility or accuracy failure is reason enough to act.
 
-If you'd like to spend 60–90 minutes giving us honest feedback on this resource, we'd genuinely value it. See the [Participate](participate.md) page for what to expect, or email Danielle directly at [danielle@boycedatascience.com](mailto:danielle@boycedatascience.com).
+| Dimension | Ready to release | Minor revision needed | Significant revision needed |
+|-----------|------------------|----------------------|----------------------------|
+| First-impression clarity | All testers correctly summarize within 30 seconds. Ratings average ≥ 4.5. | Most testers get it; some need a moment. Average 3.5–4.4. | Multiple testers can't articulate what the site is. Average below 3.5. |
+| Task success | All testers complete all assigned tasks correctly and directly. | Most tasks completed; minor friction. | Multiple task failures, or a critical task no tester could complete. |
+| Interpretation of categories | All testers describe categories accurately in their own words. | Minor misinterpretations resolved by checking the legend. | Persistent misreading even after consulting the legend. |
+| Findability | Filters, legend, sources, and feedback workflow found without help. | One or two elements found late. | Multiple elements not discovered or misidentified. |
+| Trust and credibility | Site feels authoritative and citable. | Some testers want more provenance or update transparency. | Testers express doubt about accuracy, currency, or ownership. |
+| Device and accessibility | Works across all tested devices. No accessibility failures. | Minor layout or interaction issues on some devices. | Unusable on a common device, or fails a basic accessibility check. |
+| Overall confidence | All testers recommend release as-is or with cosmetic changes. | Testers recommend moderate revisions. | One or more testers would not recommend release in current form. |
 
-You don't need to be an expert. You need to be willing to think aloud and be candid when something doesn't make sense.
+## Risk and edge cases
+
+| Situation | Response |
+|-----------|----------|
+| A tester drops out partway through. | Capture whatever feedback they completed. If their persona is now uncovered, recruit a replacement before drawing conclusions. |
+| Factually incorrect information about a community is identified. | Treat as a content blocker. Investigate the source, correct, and notify the relevant community contact where appropriate. |
+| A tester raises concerns about how their own community is portrayed. | Listen carefully and separate factual correction from framing preference. Correct facts; document framing decisions transparently. |
+| Accessibility failure discovered by a tester using assistive technology. | Treat as a blocker for that user class. Fix at the component level. Re-test with the same setup before release. |
+| Site relies on external data that changes format or goes offline mid-test. | Document the dependency, capture the impact, and plan a more resilient pipeline or caching layer. |
+| Feedback is sparse or low-effort. | Follow up with a short interview. If still thin, treat the data as inconclusive and recruit a replacement. |
+
+## Timeline
+
+A full cycle takes about three to four weeks. Subsequent lightweight cycles (after content updates) can run in one to two weeks once the rubric and tester panel are established.
+
+| Task | Effort | Calendar window |
+|------|--------|-----------------|
+| Pre-test readiness check; tester recruitment | ~4 hours (UAT Lead) | Week 1 |
+| Tester orientations (15 min each) | 1–2 hours total | End of Week 1 |
+| Pilot testing sessions (60–90 min per tester) | 3–8 hours total | Week 2 |
+| Feedback consolidation and analysis | ~3 hours (UAT Lead) | Early Week 3 |
+| Content, UX, and functional revisions | 6–16 hours typical | Week 3 |
+| Confirmation re-test and sign-off | 2–3 hours | End of Week 3 or Week 4 |
+
+For releases tied to a public announcement, conference, or funder deadline, add a one-week buffer. Testing routinely surfaces fixes that take longer than expected.
+
+## Release decision
+
+At the end of a cycle, the UAT Lead documents one of three decisions:
+
+!!! success "Release"
+    The site is ready. Any remaining items are cosmetic and can be handled in a future content update.
+
+!!! note "Release with conditions"
+    The site may be released with specific caveats communicated to users — a visible "beta" tag, a known-issues note, or a scheduled near-term update.
+
+!!! warning "Hold pending further revision"
+    The site is not ready. Document the blockers, plan the revisions, and schedule a second cycle.
+
+For an evolving resource, plan to repeat a lighter-weight version of this on a regular cadence — quarterly or after major content shifts — rather than treating it as a one-time gate.
+
+## Reference materials
+
+- [Usability Starter Kit on digital.gov](https://digital.gov/)
+- [Atlassian / Jira UAT template library](https://www.atlassian.com/software/jira/templates/user-acceptance-testing)
+- [WCAG 2.1 AA quick reference](https://www.w3.org/WAI/WCAG21/quickref/)

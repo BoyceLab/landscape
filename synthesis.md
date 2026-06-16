@@ -1,140 +1,81 @@
-# Approach and rubric
+# Methodology
 
-This page describes the methodology behind a testing cycle: roles, the pre-test checklist, how testers are selected, what activities they work through, how we score the results, and what triggers a revision.
+## Source list
 
-If you're new to user testing, start with the [Overview](index.md). If you're about to run a session, skip to [Running a session](facilitator-guide.md).
+This landscape is built on the [Genes4Epilepsy curated gene list](https://bahlolab.github.io/Genes4Epilepsy/) (v2026-03), maintained by the Bahlo Lab at WEHI. Genes4Epilepsy is updated twice yearly and provides the authoritative list of monogenic epilepsy genes — currently 1,078 entries.
 
-## A successful cycle answers four questions
+!!! note "Citation"
+    Oliver KL, Scheffer IE, Bennett MF, Grinton BE, Bahlo M, Berkovic SF. Genes4Epilepsy: An epilepsy gene resource. *Epilepsia*. 2023;64(5):1368-1375. [doi:10.1111/epi.17547](https://onlinelibrary.wiley.com/doi/10.1111/epi.17547)
 
-1. Within 30 seconds of landing on the site, can a new visitor tell what this resource is and who it is for?
-2. Can users from each target audience find the specific information they came for without external guidance?
-3. Do users correctly interpret the status categories, badges, and other classifications without misreading them?
-4. Does the site work reliably across the devices, browsers, and accessibility tools real users bring to it?
+## Tiering approach
 
-If the answer to any of these is "no," testing has surfaced a gap that would otherwise erode trust in the resource.
+Genes are grouped into three status tiers based on the depth of organized community infrastructure visible in publicly available sources. Tiering is not a judgment of disease severity, scientific importance, or therapeutic potential.
 
-## Roles
+<span class="status-badge status-established">●●● Established</span>
+**Active patient foundation + research infrastructure.** A registered patient organization with public web presence, a registry or natural history study, and at least one of: multi-stakeholder coordination, named therapeutic programs, or a multi-site research consortium. The 61 Established genes were verified individually for each landscape dimension.
 
-One person can hold more than one role on a small project — but the Independent Reviewer must not be the same person who made the change being reviewed.
+<span class="status-badge status-emerging">●●○ Emerging</span>
+**Partial or growing infrastructure.** Either a research consortium without a foundation, or a small parent-led foundation without an academic natural history study, or a community that's organized but in early stages. The 62 Emerging genes were verified for the dimensions where evidence existed.
 
-| Role | Responsibility |
-|------|----------------|
-| UAT Lead | Owns the testing process end-to-end. Recruits testers, runs orientations, triages feedback, decides what gets revised, signs off on release readiness. |
-| Site Owner / Editor | Maintains the dashboard content and the underlying data. Responds to substantive questions raised during testing. |
-| Developer / Maintainer | Implements functional, design, and accessibility fixes. May be the same person as the Site Owner on small projects. |
-| Pilot Testers | External users matching the target audiences. Must be independent of the site's development. |
-| Independent Reviewer | Confirms revisions resolve the issues raised. Must not be the person who made the change. |
+<span class="status-badge status-background">●○○ Background</span>
+**Gene confirmed in epilepsy but no organized patient community identified.** The 955 Background genes are seeded with authoritative TSV-derived data (HGNC, Entrez, Ensembl, OMIM gene ID, inheritance, phenotype group from Genes4Epilepsy) plus deterministic reference URLs. They were not verified individually beyond the source TSV.
 
-## Pre-test readiness check
+The Established / Emerging boundary is judgment-based. The Emerging / Background boundary is binary: a gene is Emerging if a public foundation, family network, or active research consortium was identifiable as of the verification date.
 
-Before involving external testers, the UAT Lead confirms:
+## Field definitions
 
-- [ ] The site loads on the production or staging URL without console errors.
-- [ ] All interactive controls (filters, sorts, modals) function on at least one desktop and one mobile browser.
-- [ ] Every external link in the dataset has been spot-checked in the most prominent rows.
-- [ ] The "Suggest a correction" workflow has been tested end-to-end and routes to a monitored inbox.
-- [ ] The data source list, last-updated date, and ownership/attribution are visible on the site itself.
-- [ ] An accessibility quick-scan has been run (axe DevTools, WAVE, or Lighthouse) and obvious failures fixed.
-- [ ] Analytics or session-capture tooling is configured if used during testing — with testers informed.
+The dashboard surfaces these fields per gene:
 
-Time spent here protects testers' goodwill and prevents wasted cycles.
+`Gene` — HGNC-approved symbol from Genes4Epilepsy
 
-## Selecting testers
+`Inheritance` — From Genes4Epilepsy. AD = autosomal dominant; AR = autosomal recessive; XL = X-linked; AD/AR = mixed
 
-Recruit three to five testers covering the site's distinct audiences. A reference dashboard serves multiple user types whose friction points don't overlap; a single perspective will miss the friction the others experience.
+`Phenotype` — From Genes4Epilepsy. DEE = developmental and epileptic encephalopathy; NDD = neurodevelopmental disorder; GGE = genetic generalized epilepsy; MCD = malformation of cortical development; FE = focal epilepsy
 
-### Audience personas
+`Clinical disorder` — Common clinical name(s) for the gene's associated phenotype, populated for Established/Emerging genes
 
-| Persona | What they need | What to watch for |
-|---------|----------------|-------------------|
-| Clinician (neurologist, geneticist) | Quick lookup of a specific gene; clinical context; pointers to registries or trials for a newly diagnosed patient. | Whether clinical terminology is used correctly; whether the path from gene to actionable resource is short. |
-| Foundation / advocacy staff | Landscape view of the field; comparing community maturity; identifying gaps. | Whether status categories make sense to someone embedded in the space; whether their own foundation is represented accurately. |
-| Patient or family member | Plain-language information; finding a community, registry, or trial relevant to a diagnosis. | Whether jargon blocks comprehension; whether emotional weight is handled with care; whether next steps are clear. |
-| Researcher (academic or industry) | Survey of where infrastructure exists; pointers to data sources, collaborators, partnerships. | Whether sources and methods are transparent; whether the resource can be cited. |
+`Patient foundation` — Primary patient-led organization, with URL where available. Some foundations are 501(c)(3); some are international networks; some are family-led without formal incorporation
 
-### Selection criteria
+`Registry platform(s)` — Underlying technology or host of each registry/NH study, with multiple platforms allowed per gene. Foundation-hosted and Academic/REDCap pills link to the gene's actual registry URL (not a generic platform homepage). Simons Searchlight and Sanford CoRDS coverage is shown as pills in this column rather than as separate columns. See the [Glossary](glossary.md) for canonical platform names
 
-| Criterion | Ideal | Acceptable |
-|-----------|-------|------------|
-| Independence | No prior involvement in building or sponsoring the site. | Loose familiarity. |
-| Domain fit | Actively works in the condition area covered. | Strong adjacent expertise. |
-| Audience coverage | Panel collectively covers all four personas. | At least three of four; gap documented. |
-| Device diversity | At least one mobile-only user, one desktop user, and one assistive-technology user. | At least one mobile and one desktop. |
-| Availability | 60–90 minutes within a one-week window. | At least 45 minutes within a flexible window. |
-| Conflicts | No financial or organizational stake in how their community is represented. | Minor conflicts disclosed and reviewed. |
+`Therapeutic programs` — Industry programs disclosed publicly + active academic translational programs. Excludes preclinical-only academic work unless program-level
 
-## Testing activities
+`FDA Patient Experience` — Whether the gene's primary disorder has a Patient-Focused Drug Development meeting report on file with the FDA, with meeting type (EL-PFDD, FDA-led PFDD, or Patient Listening Session) and year. Links to the meeting summary or the FDA's PFDD landing page where the disease-specific report can be found
 
-Testers work through the activities below in order. The first two must happen before free exploration — first-impression timing only works once.
+`Resources` — Deterministic links to PubMed (gene + epilepsy search), HGNC, NCBI Gene, ClinVar, gnomAD, GeneReviews search, and Orphanet gene record. These are generated for every gene whether or not the target page exists at the destination
 
-| Activity | What "good" looks like |
-|----------|------------------------|
-| First impression (≤ 30 seconds, no scrolling) | Tester correctly summarizes what the site is, who it's for, and what they could do with it. |
-| Orientation pass (2–3 min of free exploration) | Tester locates filters, legend, data source, and feedback mechanism without help. |
-| Interpret classifications | Tester describes each category accurately in their own words, matching the legend. |
-| Guided lookup tasks (3–5 per persona, from the [task bank](task-bank.md)) | Tester completes each with a reasonably direct path. |
-| Filter and sort behavior | Filters narrow the table as expected; sorts behave predictably. |
-| External link spot check | Sampled links resolve to expected destinations. |
-| Feedback workflow | Tester locates and successfully uses the "Suggest a correction" affordance. |
-| Cross-device check | Functionality and readability preserved on a different device. |
+## Data sources for foundation and registry data
 
-## The rubric
+Foundation websites, registry deep links, and social media handles for the deep-dived genes draw on the Rare Epilepsy Network / Chan Zuckerberg Initiative database (REN_CZI_DB), an external curation that verifies foundation URLs, registry endpoints, LinkedIn, Facebook, Instagram, and YouTube presences. FDA Patient-Focused Drug Development data comes from the FDA's published Condition-Specific Patient Experience Meeting Reports list. These external sources are merged into the deep-dive entries during the build.
 
-We score each dimension against three levels. A dimension falling into the rightmost column triggers a revision cycle before release. Look for patterns across testers, not isolated complaints — though a single severe accessibility or accuracy failure is reason enough to act.
+## Verification dates
 
-| Dimension | Ready to release | Minor revision needed | Significant revision needed |
-|-----------|------------------|----------------------|----------------------------|
-| First-impression clarity | All testers correctly summarize within 30 seconds. Ratings average ≥ 4.5. | Most testers get it; some need a moment. Average 3.5–4.4. | Multiple testers can't articulate what the site is. Average below 3.5. |
-| Task success | All testers complete all assigned tasks correctly and directly. | Most tasks completed; minor friction. | Multiple task failures, or a critical task no tester could complete. |
-| Interpretation of categories | All testers describe categories accurately in their own words. | Minor misinterpretations resolved by checking the legend. | Persistent misreading even after consulting the legend. |
-| Findability | Filters, legend, sources, and feedback workflow found without help. | One or two elements found late. | Multiple elements not discovered or misidentified. |
-| Trust and credibility | Site feels authoritative and citable. | Some testers want more provenance or update transparency. | Testers express doubt about accuracy, currency, or ownership. |
-| Device and accessibility | Works across all tested devices. No accessibility failures. | Minor layout or interaction issues on some devices. | Unusable on a common device, or fails a basic accessibility check. |
-| Overall confidence | All testers recommend release as-is or with cosmetic changes. | Testers recommend moderate revisions. | One or more testers would not recommend release in current form. |
+- Tier 1 / Established and Emerging deep-dive entries verified via web search **May 6, 2026**
+- Programmatic enrichment URLs are deterministic and don't have a verification date
+- The Genes4Epilepsy source list itself is **v2026-03**
 
-## Risk and edge cases
+## What we don't include
 
-| Situation | Response |
-|-----------|----------|
-| A tester drops out partway through. | Capture whatever feedback they completed. If their persona is now uncovered, recruit a replacement before drawing conclusions. |
-| Factually incorrect information about a community is identified. | Treat as a content blocker. Investigate the source, correct, and notify the relevant community contact where appropriate. |
-| A tester raises concerns about how their own community is portrayed. | Listen carefully and separate factual correction from framing preference. Correct facts; document framing decisions transparently. |
-| Accessibility failure discovered by a tester using assistive technology. | Treat as a blocker for that user class. Fix at the component level. Re-test with the same setup before release. |
-| Site relies on external data that changes format or goes offline mid-test. | Document the dependency, capture the impact, and plan a more resilient pipeline or caching layer. |
-| Feedback is sparse or low-effort. | Follow up with a short interview. If still thin, treat the data as inconclusive and recruit a replacement. |
+- Specific clinical trial enrollment status — verify on [clinicaltrials.gov](https://clinicaltrials.gov)
+- Pricing or coverage details for approved therapies
+- Patient-level data of any kind
+- Editorial commentary on individual foundations or research groups
+- Speculation about which therapeutic approaches will succeed
 
-## Timeline
+## What can go wrong
 
-A full cycle takes about three to four weeks. Subsequent lightweight cycles (after content updates) can run in one to two weeks once the rubric and tester panel are established.
+URLs change. Foundations consolidate, rebrand, or fold. Industry programs are deprioritized without public announcements. Newly identified genes get added to Genes4Epilepsy faster than the surrounding community can develop. Some foundations operate without a public web presence and aren't visible to a curation lens like this one.
 
-| Task | Effort | Calendar window |
-|------|--------|-----------------|
-| Pre-test readiness check; tester recruitment | ~4 hours (UAT Lead) | Week 1 |
-| Tester orientations (15 min each) | 1–2 hours total | End of Week 1 |
-| Pilot testing sessions (60–90 min per tester) | 3–8 hours total | Week 2 |
-| Feedback consolidation and analysis | ~3 hours (UAT Lead) | Early Week 3 |
-| Content, UX, and functional revisions | 6–16 hours typical | Week 3 |
-| Confirmation re-test and sign-off | 2–3 hours | End of Week 3 or Week 4 |
+This is why the landscape is framed as a **living community resource**. If you spot something inaccurate, [tell us](about.md).
 
-For releases tied to a public announcement, conference, or funder deadline, add a one-week buffer. Testing routinely surfaces fixes that take longer than expected.
+## Major systematic sources
 
-## Release decision
-
-At the end of a cycle, the UAT Lead documents one of three decisions:
-
-!!! success "Release"
-    The site is ready. Any remaining items are cosmetic and can be handled in a future content update.
-
-!!! note "Release with conditions"
-    The site may be released with specific caveats communicated to users — a visible "beta" tag, a known-issues note, or a scheduled near-term update.
-
-!!! warning "Hold pending further revision"
-    The site is not ready. Document the blockers, plan the revisions, and schedule a second cycle.
-
-For an evolving resource, plan to repeat a lighter-weight version of this on a regular cadence — quarterly or after major content shifts — rather than treating it as a one-time gate.
-
-## Reference materials
-
-- [Usability Starter Kit on digital.gov](https://digital.gov/)
-- [Atlassian / Jira UAT template library](https://www.atlassian.com/software/jira/templates/user-acceptance-testing)
-- [WCAG 2.1 AA quick reference](https://www.w3.org/WAI/WCAG21/quickref/)
+- [Genes4Epilepsy](https://bahlolab.github.io/Genes4Epilepsy/) — gene list
+- [Simons Searchlight](https://www.simonssearchlight.org/) — NDD-focused research registry
+- [Sanford CoRDS](https://research.sanfordhealth.org/rare-disease-registry) — generic rare-disease registry
+- [Orphanet](https://www.orpha.net/) — rare disease nomenclature and gene-disorder mappings
+- [OMIM](https://www.omim.org/) — gene and phenotype IDs
+- [GeneReviews](https://www.ncbi.nlm.nih.gov/books/NBK1116/) — clinical gene summaries
+- [COMBINEDBrain](https://www.combinedbrain.org/) — multi-foundation biorepository consortium
+- [CURE Epilepsy gene grants](https://cureepilepsy.org/)
+- Individual foundation websites (verified per gene)
