@@ -1,77 +1,166 @@
+# Synthesis and release
+
+What happens after the testing sessions are done: how findings are consolidated, how revisions are tracked, and how the release decision is made and documented.
+
+## Findings synthesis
+
+Complete this after the last testing session but before starting revisions. The goal is a single document showing every finding from every tester — deduplicated, prioritized, and assigned. Without this step, individual session notes drift into separate to-do lists and important patterns get missed.
+
+Work through the sections in order.
+
+### 1. Tester summary
+
+| ID | Persona | Session date | Duration | Device(s) | Form returned? |
+|----|---------|--------------|----------|-----------|----------------|
+| T1 |         |              |          |           |                |
+| T2 |         |              |          |           |                |
+| T3 |         |              |          |           |                |
+| T4 |         |              |          |           |                |
+| T5 |         |              |          |           |                |
+
+**Coverage check.** Did the panel cover all four personas? If a persona is missing, note it — it informs the release decision.
+
+### 2. Rubric ratings
+
+Fill in the average rating for each dimension. Flag any tester whose ratings deviated substantially from the average — their session likely contains the most actionable feedback.
+
+| Dimension | Avg | Min | Max | Notes |
+|-----------|-----|-----|-----|-------|
+| First-impression clarity | | | | |
+| Task success rate | | | | |
+| Interpretation of categories | | | | |
+| Findability | | | | |
+| Trust and credibility | | | | |
+| Device and accessibility | | | | |
+| Overall confidence | | | | |
+
+**Quick read.** Any dimension averaging below 3.5, or with a single rating of 1–2, deserves discussion in section 4 even if other dimensions look healthy.
+
+### 3. Findings
+
+Every finding from every session, deduplicated. Use severity tags from the [facilitator guide](facilitator-guide.md). Assign an owner and an action. Findings raised by multiple testers should be flagged with a count and treated as higher confidence.
+
+| # | Severity | Finding | Raised by | Action | Owner | Status |
+|---|----------|---------|-----------|--------|-------|--------|
+| 1 |          |         |           |        |       |        |
+| 2 |          |         |           |        |       |        |
+| 3 |          |         |           |        |       |        |
+
+Severity reminders:
+
+- **BLOCKER** — must fix before release
+- **MAJOR** — should fix before release
+- **MINOR** — can be deferred
+- **QUESTION** — needs team discussion before action
+
+### 4. Patterns and themes
+
+Issues raised by only one tester may still matter — but issues raised by multiple testers across different sessions are diagnostic of the design, not the tester.
+
+| Theme | Evidence (which testers, what they said) |
+|-------|-------------------------------------------|
+|       |                                           |
+|       |                                           |
+
+### 5. What worked
+
+Don't only document problems. Note what testers reacted positively to — these are signals about what to preserve when revising.
+
+### 6. Recommendation for release decision
+
+One paragraph. State the recommended decision (Release / Release with Conditions / Hold) and the single most important reason.
+
 ---
-hide:
-  - navigation
-  - toc
+
+## Revision log
+
+Record every change in response to testing feedback. Update as each revision is completed, not at the end — memory of why a change was made degrades quickly.
+
+| # | Finding ID | Issue | Change made | Owner | Date | Verified by |
+|---|------------|-------|-------------|-------|------|-------------|
+| 1 |            |       |             |       |      |             |
+| 2 |            |       |             |       |      |             |
+
+**Deferred items.** Issues raised but explicitly not addressed in this cycle. Documenting them prevents loss and supports planning for the next cycle.
+
+| # | Finding ID | Issue | Reason for deferral / planned cycle |
+|---|------------|-------|--------------------------------------|
+| 1 |            |       |                                      |
+
+For public dashboards, consider exposing a short "What's new" or changelog on the site itself.
+
 ---
 
-# Living Atlas of Rare Epilepsies
+## Release decision memo
 
-<style>
-.md-typeset .hero{padding:8px 0 6px}
-.md-typeset .hero .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#7c3aed;font-weight:700}
-.md-typeset .hero h2{font-family:Fraunces,Georgia,serif;font-size:32px;line-height:1.1;margin:.2em 0 .1em;font-weight:600}
-.md-typeset .hero p{font-size:17px;color:#6b7280;max-width:64ch;margin:.4em 0 0}
-.md-typeset a.starthere{display:flex;align-items:center;gap:18px;border:1px solid #e4dff0;border-left:5px solid #6d28d9;border-radius:14px;padding:18px 22px;background:linear-gradient(90deg,#f3eaff,#fffdf8);margin:22px 0 16px;transition:transform .15s,border-color .15s}
-.md-typeset a.starthere:hover{transform:translateY(-2px);border-color:#8b5cf6;text-decoration:none}
-.md-typeset a.starthere .sh-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#6d28d9;font-weight:700;margin:0}
-.md-typeset a.starthere .sh-title{font-family:Fraunces,Georgia,serif;font-size:20px;font-weight:600;color:#0e1a2b;margin:4px 0 4px}
-.md-typeset a.starthere .sh-sub{color:#6b7280;font-size:14px;margin:0;max-width:74ch}
-.md-typeset a.starthere .sh-arrow{margin-left:auto;font-size:26px;color:#6d28d9;flex:none}
-.md-typeset .doors{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:6px 0 26px}
-.md-typeset .door{display:block;border:1px solid #e4dff0;border-radius:14px;padding:20px 22px;background:#fffdf8;transition:border-color .15s,transform .15s}
-.md-typeset .door:hover{border-color:#8b5cf6;transform:translateY(-2px);text-decoration:none}
-.md-typeset .door .dn{font-family:Fraunces,Georgia,serif;font-size:20px;font-weight:600;color:#0e1a2b;margin:0}
-.md-typeset .door .dd{color:#6b7280;font-size:14px;margin:6px 0 12px}
-.md-typeset .door .dl{font-size:13.5px;color:#6d28d9;font-weight:600;margin:0}
-.md-typeset .door .dl span{display:inline-block;margin-right:14px}
-.md-typeset .rk{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6b7280;font-weight:700;margin:18px 0 8px}
-.md-typeset .toolsrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 4px}
-.md-typeset .tool{border:1px solid #e4dff0;border-radius:11px;padding:13px 15px;background:#f3eaff;text-align:center;font-weight:600;font-size:14px;color:#5b21b6}
-.md-typeset .tool:hover{text-decoration:none;border-color:#8b5cf6}
-@media(max-width:720px){.md-typeset .doors{grid-template-columns:1fr}.md-typeset .toolsrow{grid-template-columns:repeat(2,1fr)}.md-typeset a.starthere .sh-arrow{display:none}}
-</style>
+A one-page memo formalizing the release decision and rationale at the close of a cycle. Use this structure:
 
-<div class="hero">
-<div class="eyebrow">Boyce Lab &middot; Living Atlas</div>
-<h2>Find your way in.</h2>
-<p>A living map of rare epilepsy genes, the conditions they cause, the organizations run by and for people with lived experience and caregivers, and how research ready those communities are. Pick the door that fits you. You can always move between views once you are inside.</p>
-</div>
-<a class="starthere" href="start-here/">
-<div class="sh-body">
-<p class="sh-eyebrow">New here</p>
-<p class="sh-title">Living with epilepsy, or caring for a child with epilepsy, and the cause is still unknown?</p>
-<p class="sh-sub">Start here. A plain language orientation to finding a cause, connecting with others, and using this site, whether or not you have a diagnosis yet.</p>
-</div>
-<span class="sh-arrow">&rarr;</span>
-</a>
-<div class="doors">
-<a class="door" href="atlas/">
-<p class="dn">I am a researcher</p>
-<p class="dd">Move from a gene's canonical references to its position in the advocacy and condition network, and see where communities cluster.</p>
-<p class="dl"><span>&rarr; Network &amp; reference atlas</span><span>&rarr; Reports &amp; lists</span></p>
-</a>
-<a class="door" href="atlas/">
-<p class="dn">I live with epilepsy, or care for someone who does</p>
-<p class="dd">If a gene is known, see whether a foundation, registry, or research effort exists for it, and connect with organizations and resources.</p>
-<p class="dl"><span>&rarr; Find your gene</span><span>&rarr; Resources</span></p>
-</a>
-<a class="door" href="maturity-model/">
-<p class="dn">I run or help an organization</p>
-<p class="dd">Understand the path to research readiness, find where your organization stands, and get matched to the right support.</p>
-<p class="dl"><span>&rarr; Maturity model</span><span>&rarr; Self-assessment</span></p>
-</a>
-<a class="door" href="atlas/">
-<p class="dn">I am a physician</p>
-<p class="dd">Read a fast clinical summary for a gene, its inheritance and phenotype, and jump to GeneReviews, ClinicalTrials, and FDA context.</p>
-<p class="dl"><span>&rarr; Clinical reference</span><span>&rarr; Trials &amp; reports</span></p>
-</a>
-</div>
-<p class="rk">Tools anyone can use</p>
-<div class="toolsrow">
-<a class="tool" href="atlas/">Atlas &amp; network</a>
-<a class="tool" href="reports/">Reports &amp; lists</a>
-<a class="tool" href="self-assessment/">Self-assessment</a>
-<a class="tool" href="resources/">Resources</a>
-<a class="tool" href="lessons/">Lessons learned</a>
-<a class="tool" href="submit/">Submit an update</a>
-</div>
+### Memo header
+
+| | |
+|---|---|
+| Project / site | |
+| Cycle name (e.g., "Pre-launch v1" or "Q3 update") | |
+| Date of memo | |
+| Author (UAT Lead) | |
+| Distribution | |
+
+### Decision
+
+Check one:
+
+- [ ] **Release.** The site is ready. Remaining items are cosmetic.
+- [ ] **Release with conditions.** Releasing with specific caveats communicated to users.
+- [ ] **Hold pending further revision.** Site not ready; a second cycle is scheduled.
+
+### Summary of cycle
+
+One short paragraph: who tested, what they did, and what was found at a high level.
+
+### What changed
+
+The three to five most consequential changes made in response to feedback.
+
+- [Change 1]
+- [Change 2]
+- [Change 3]
+
+### Conditions (if Release with Conditions)
+
+| Condition | How communicated / when resolved |
+|-----------|----------------------------------|
+|           |                                  |
+
+### Blockers (if Hold)
+
+| Blocker | Owner / planned resolution |
+|---------|----------------------------|
+|         |                            |
+
+### Risks and open questions
+
+Anything not captured above the team or stakeholders should know about. Known data limitations, audiences not represented in this cycle, planned future work.
+
+### Next cycle
+
+| | |
+|---|---|
+| Planned trigger (date or event) | |
+| Anticipated scope (full or focused) | |
+| Notes | |
+
+### Sign-off
+
+| Role | Name | Date |
+|------|------|------|
+| UAT Lead | | |
+| Site Owner | | |
+| Other approver (e.g., Principal Investigator) | | |
+
+---
+
+## Cadence
+
+For an evolving resource like this one, plan to repeat a lighter-weight version of this process on a regular cadence — quarterly, or after major content shifts — rather than treating testing as a one-time gate. A lightweight cycle typically uses two testers, a focused task bank, and an abbreviated synthesis.
+
+The full process is for pre-launch and major releases. The lighter version keeps the resource honest between them.

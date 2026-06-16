@@ -31,6 +31,7 @@ hide:
 @media(max-width:720px){.md-typeset .doors{grid-template-columns:1fr}.md-typeset .toolsrow{grid-template-columns:repeat(2,1fr)}.md-typeset a.starthere .sh-arrow{display:none}}
 </style>
 
+<div class="frontdoor">
 <div class="hero">
 <div class="eyebrow">Boyce Lab &middot; Living Atlas</div>
 <h2>Find your way in.</h2>
@@ -74,4 +75,5 @@ hide:
 <a class="tool" href="resources/">Resources</a>
 <a class="tool" href="lessons/">Lessons learned</a>
 <a class="tool" href="submit/">Submit an update</a>
+</div>
 </div>
