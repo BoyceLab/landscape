@@ -68,6 +68,7 @@ hide:
 <a class="tool" href="atlas/">Atlas &amp; network</a>
 <a class="tool" href="self-assessment/">Self-assessment</a>
 <a class="tool" href="resources/">Resources</a>
+<a class="tool" href="lessons/">Lessons learned</a>
 <a class="tool" href="submit/">Submit an update</a>
 </div>
 
